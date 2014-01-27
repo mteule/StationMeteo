@@ -11,7 +11,6 @@ class Station :
 	def __init__(self) :
 		self.logger = logging.getLogger(__name__) # 
 		self.ser = serial.Serial() # 
-		self.parser = InputParser() # 
 		self.datab = DatabManager() # 
 		self.raw_received_meterings = "" # str
 		self.metering_quantity = 0 # int

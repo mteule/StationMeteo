@@ -68,7 +68,7 @@
         <dia:point val="9.0743,1.2266"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="9.0243,1.1766;23.8693,13.4766"/>
+        <dia:rectangle val="9.0243,1.1766;23.8693,12.6766"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="9.0743,1.2266"/>
@@ -77,7 +77,7 @@
         <dia:real val="14.744999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="12.199999999999999"/>
+        <dia:real val="11.399999999999999"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#Station#</dia:string>
@@ -199,29 +199,6 @@
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>#serial.Serial()#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="0"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#parser#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>#InputParser()#</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
             <dia:string>##</dia:string>
@@ -1008,18 +985,18 @@ Nvarchar ne sert que pour les utilisateurs MS-SQL. #</dia:string>
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="16.4468,13.477"/>
+        <dia:point val="16.4468,12.677"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="15.6968,12.727;20.3075,18.7496"/>
+        <dia:rectangle val="15.6968,11.927;20.3075,18.7496"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="16.4468,13.477"/>
-        <dia:point val="16.4468,16.0633"/>
-        <dia:point val="20.1075,16.0633"/>
+        <dia:point val="16.4468,12.677"/>
+        <dia:point val="16.4468,15.6633"/>
+        <dia:point val="20.1075,15.6633"/>
         <dia:point val="20.1075,17.9496"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
@@ -1037,7 +1014,7 @@ Nvarchar ne sert que pour les utilisateurs MS-SQL. #</dia:string>
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O0" connection="34"/>
+        <dia:connection handle="0" to="O0" connection="32"/>
         <dia:connection handle="1" to="O1" connection="18"/>
       </dia:connections>
     </dia:object>
