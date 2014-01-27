@@ -1,169 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="62cm" height="34cm" viewBox="45 -33 1221 677" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="34cm" height="21cm" viewBox="164 23 671 411" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
-    <rect style="fill: #ffffff" x="394.485" y="-31.468" width="348.8" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.485" y="-31.468" width="348.8" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="568.885" y="-12.468">Station</text>
-    <rect style="fill: #ffffff" x="394.485" y="-3.46804" width="348.8" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.485" y="-3.46804" width="348.8" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="10.532">+ser = SerialInput()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="26.532">+parser = InputParser()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="42.532">+datab = DatabManager()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="58.532">+input: str = None</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="74.532">+sensor_dict = dict('id': ,'name': )</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="90.532">+last_meterings_list = LastMeteringList()</text>
-    <rect style="fill: #ffffff" x="394.485" y="96.532" width="348.8" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.485" y="96.532" width="348.8" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="110.532">+__get_serial_input_content(ser:SerialInput)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="126.532">+__parse(serial_input_content:str)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="142.532">+__store_meterings()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="158.532">+__connect_serial()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="174.532">+setup()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.485" y="190.532">+loop()</text>
+    <rect style="fill: #ffffff" x="181.486" y="24.532" width="287.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="181.486" y="24.532" width="287.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="325.086" y="43.532">Station</text>
+    <rect style="fill: #ffffff" x="181.486" y="52.532" width="287.2" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="181.486" y="52.532" width="287.2" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="66.532">+ser = serial.Serial()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="82.532">+parser = InputParser()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="98.532">+datab = DatabManager()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="114.532">+raw_received_meterings: str = ""</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="130.532">+metering_quantity: int = 0</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="146.532">+last_meterings_list = list()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="162.532">+sensor_dict = dict('id': ,'name': )</text>
+    <rect style="fill: #ffffff" x="181.486" y="168.532" width="287.2" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="181.486" y="168.532" width="287.2" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="182.532">+_get_meterings_raw_data()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="198.532">+_parse_raw_data()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="214.532">+_store_meterings()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="230.532">+setup()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="184.486" y="246.532">+loop()</text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="61" y="136" width="187.1" height="44"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="61" y="136" width="187.1" height="44"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="154.55" y="152">&lt;&lt;serial.Serial&gt;&gt;</text>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="154.55" y="171">SerialInput</text>
-    <rect style="fill: #ffffff" x="61" y="180" width="187.1" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="61" y="180" width="187.1" height="36"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="194">+port = '/dev/ttyUSB0'</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="210">+baudrate: int = 115200</text>
-    <rect style="fill: #ffffff" x="61" y="216" width="187.1" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="61" y="216" width="187.1" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="230">+readline(): str</text>
+    <rect style="fill: #ffffff" x="165" y="297" width="464.3" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="165" y="297" width="464.3" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="397.15" y="316">DatabManager</text>
+    <rect style="fill: #ffffff" x="165" y="325" width="464.3" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="165" y="325" width="464.3" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="339">+engine_url: str = 'sqlite:///:memory:'</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="355">+engine = sqlalchemy.create_engine(engine_url, echo = True)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="371">+Session = sqlalchemy.orm.sessionmaker(bind=engine)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="387">+session = Session()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="403">+metering = Metering()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="419">+Sensors = Sensors()</text>
+    <rect style="fill: #ffffff" x="165" y="425" width="464.3" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="165" y="425" width="464.3" height="8"/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="47" y="311" width="110.1" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="47" y="311" width="110.1" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="102.05" y="330">/dev/tty</text>
-    <rect style="fill: #ffffff" x="47" y="339" width="110.1" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="47" y="339" width="110.1" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="50" y="353">+name: string</text>
-    <rect style="fill: #ffffff" x="47" y="359" width="110.1" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="47" y="359" width="110.1" height="8"/>
+    <rect style="fill: #ffffff" x="533" y="78" width="294.9" height="44"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="533" y="78" width="294.9" height="44"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="680.45" y="94">&lt;&lt;sqlalchemy.ext.declarative.Base()&gt;&gt;</text>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="680.45" y="113">Metering</text>
+    <rect style="fill: #ffffff" x="533" y="122" width="294.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="533" y="122" width="294.9" height="8"/>
+    <rect style="fill: #ffffff" x="533" y="130" width="294.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="533" y="130" width="294.9" height="8"/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="292.674" y="322.468" width="325.7" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="292.674" y="322.468" width="325.7" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="455.524" y="341.468">InputParser</text>
-    <rect style="fill: #ffffff" x="292.674" y="350.468" width="325.7" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="292.674" y="350.468" width="325.7" height="36"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="295.674" y="364.468">+serial_input_content: str</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="295.674" y="380.468">+last_meterings_list = LastMeteringList()</text>
-    <rect style="fill: #ffffff" x="292.674" y="386.468" width="325.7" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="292.674" y="386.468" width="325.7" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="295.674" y="400.468">+parse()</text>
+    <rect style="fill: #ffffff" x="538.64" y="166.706" width="294.9" height="44"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="538.64" y="166.706" width="294.9" height="44"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="686.09" y="182.706">&lt;&lt;sqlalchemy.ext.declarative.Base()&gt;&gt;</text>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="686.09" y="201.706">Sensor</text>
+    <rect style="fill: #ffffff" x="538.64" y="210.706" width="294.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="538.64" y="210.706" width="294.9" height="8"/>
+    <rect style="fill: #ffffff" x="538.64" y="218.706" width="294.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="538.64" y="218.706" width="294.9" height="8"/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="192.929" y="539.296" width="194.8" height="44"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="192.929" y="539.296" width="194.8" height="44"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="290.329" y="555.296">&lt;&lt;dict()&gt;&gt;</text>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="290.329" y="574.296">Metering</text>
-    <rect style="fill: #ffffff" x="192.929" y="583.296" width="194.8" height="52"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="192.929" y="583.296" width="194.8" height="52"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="195.929" y="597.296">+sensor_name: str = None</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="195.929" y="613.296">+raw:: int = None</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="195.929" y="629.296">+value: float = None</text>
-    <rect style="fill: #ffffff" x="192.929" y="635.296" width="194.8" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="192.929" y="635.296" width="194.8" height="8"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="325.086,278.711 325.086,281.765 397.15,281.765 397.15,295.992 "/>
+    <polygon style="fill: #ffffff" points="325.086,253.539 329.886,267.539 325.086,281.539 320.286,267.539 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="325.086,253.539 329.886,267.539 325.086,281.539 320.286,267.539 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="361.118" y="277.765"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="336.086" y="265.539"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="401.15" y="291.992"></text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="189.929" y="466.681" width="162.5" height="44"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="189.929" y="466.681" width="162.5" height="44"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="271.179" y="482.681">&lt;&lt;list()&gt;&gt;</text>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="271.179" y="501.681">LastMeteringList</text>
-    <rect style="fill: #ffffff" x="189.929" y="510.681" width="162.5" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="189.929" y="510.681" width="162.5" height="8"/>
-    <rect style="fill: #ffffff" x="189.929" y="518.681" width="162.5" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="189.929" y="518.681" width="162.5" height="8"/>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="801" y="44" width="464.3" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801" y="44" width="464.3" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1033.15" y="63">DatabManager</text>
-    <rect style="fill: #ffffff" x="801" y="72" width="464.3" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801" y="72" width="464.3" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="86">+engine_url: str = 'sqlite:///:memory:'</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="102">+engine = sqlalchemy.create_engine(engine_url, echo = True)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="118">+Session = sqlalchemy.orm.sessionmaker(bind=engine)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="134">+session = Session()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="150">+metering = Metering()</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804" y="166">+Sensors = Sensors()</text>
-    <rect style="fill: #ffffff" x="801" y="172" width="464.3" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801" y="172" width="464.3" height="8"/>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="875" y="272" width="294.9" height="44"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="875" y="272" width="294.9" height="44"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="1022.45" y="288">&lt;&lt;sqlalchemy.ext.declarative.Base()&gt;&gt;</text>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1022.45" y="307">Metering</text>
-    <rect style="fill: #ffffff" x="875" y="316" width="294.9" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="875" y="316" width="294.9" height="8"/>
-    <rect style="fill: #ffffff" x="875" y="324" width="294.9" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="875" y="324" width="294.9" height="8"/>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="749.64" y="521.706" width="294.9" height="44"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="749.64" y="521.706" width="294.9" height="44"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="897.09" y="537.706">&lt;&lt;sqlalchemy.ext.declarative.Base()&gt;&gt;</text>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="897.09" y="556.706">Sensors</text>
-    <rect style="fill: #ffffff" x="749.64" y="565.706" width="294.9" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="749.64" y="565.706" width="294.9" height="8"/>
-    <rect style="fill: #ffffff" x="749.64" y="573.706" width="294.9" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="749.64" y="573.706" width="294.9" height="8"/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="154.55,262.178 154.55,280.5 102.05,280.5 102.05,309.993 "/>
-    <polygon style="fill: #ffffff" points="154.55,237.006 159.35,251.006 154.55,265.006 149.75,251.006 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="154.55,237.006 159.35,251.006 154.55,265.006 149.75,251.006 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="128.3" y="276.5"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="165.55" y="249.006"> dev</text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="165.55" y="265.006">1,1</text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="106.05" y="305.993">1,1</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,222.56 568.885,230.846 1022.45,230.846 1022.45,271 "/>
-    <polygon style="fill: #ffffff" points="568.885,197.388 573.685,211.388 568.885,225.388 564.085,211.388 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,197.388 573.685,211.388 568.885,225.388 564.085,211.388 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="795.668" y="226.846"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="579.885" y="209.388"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1026.45" y="267"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="368.371,82.532 314.293,82.532 314.293,186 249.095,186 "/>
-    <polygon style="fill: #ffffff" points="393.542,82.532 379.542,87.332 365.542,82.532 379.542,77.732 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="393.542,82.532 379.542,87.332 365.542,82.532 379.542,77.732 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="316.293" y="130.266"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="361.542" y="78.532"> ser</text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="361.542" y="94.532"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="253.095" y="182"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="163.752,496.681 153.924,496.681 153.924,591.296 191.923,591.296 "/>
-    <polygon style="fill: #ffffff" points="188.924,496.681 174.924,501.481 160.924,496.681 174.924,491.881 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="188.924,496.681 174.924,501.481 160.924,496.681 174.924,491.881 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,222.665 568.885,250.645 271.179,250.645 271.179,465.679 "/>
-    <polygon style="fill: #ffffff" points="568.885,197.494 573.685,211.494 568.885,225.494 564.085,211.494 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,197.494 573.685,211.494 568.885,225.494 564.085,211.494 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,222.709 568.885,264.787 455.524,264.787 455.524,321.478 "/>
-    <polygon style="fill: #ffffff" points="568.885,197.537 573.685,211.537 568.885,225.537 564.085,211.537 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.885,197.537 573.685,211.537 568.885,225.537 564.085,211.537 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="769.462,82.532 779.142,82.532 779.142,112 799.993,112 "/>
-    <polygon style="fill: #ffffff" points="744.291,82.532 758.291,77.732 772.291,82.532 758.291,87.332 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="744.291,82.532 758.291,77.732 772.291,82.532 758.291,87.332 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="455.524,432.645 455.524,443.573 271.179,443.573 271.179,465.674 "/>
-    <polygon style="fill: #ffffff" points="455.524,407.473 460.324,421.473 455.524,435.473 450.724,421.473 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="455.524,407.473 460.324,421.473 455.524,435.473 450.724,421.473 "/>
+    <rect style="fill: #ffffff" x="692.486" y="282" width="81.3" height="60"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="692.486" y="282" width="81.3" height="60"/>
+    <rect style="fill: #ffffff" x="692.486" y="264" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="692.486" y="264" width="30" height="18"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="698.486" y="315.9">
+      <tspan x="698.486" y="315.9">Metering</tspan>
+      <tspan x="698.486" y="331.9">Sensor</tspan>
+    </text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="698.486" y="299.9">&lt;&lt;model&gt;&gt;</text>
   </g>
 </svg>
