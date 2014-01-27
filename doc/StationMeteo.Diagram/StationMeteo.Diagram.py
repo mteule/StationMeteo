@@ -9,6 +9,7 @@ Nvarchar ne sert que pour les utilisateurs MS-SQL. '''
 class Station :
 	'''(NULL)'''
 	def __init__(self) :
+		self.logger = logging.getLogger(__name__) # 
 		self.ser = serial.Serial() # 
 		self.parser = InputParser() # 
 		self.datab = DatabManager() # 
@@ -36,12 +37,11 @@ class DatabManager :
 	'''
 http://docs.sqlalchemy.org/en/rel_0_8/orm/tutorial.html#adding-new-objects'''
 	def __init__(self) :
+		self.logger = logging.getLogger(__name__) # 
 		self.engine_url = 'sqlite:///:memory:' # str
 		self.engine = sqlalchemy.create_engine(engine_url, echo = True) # 
 		self.Session = sqlalchemy.orm.sessionmaker(bind=engine) # 
 		self.session = Session() # 
-		self.metering = Metering() # 
-		self.Sensors = Sensors() # 
 		pass
 class Metering :
 	'''

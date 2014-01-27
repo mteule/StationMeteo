@@ -68,16 +68,16 @@
         <dia:point val="9.0743,1.2266"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="9.0243,1.1766;23.4843,12.6766"/>
+        <dia:rectangle val="9.0243,1.1766;23.8693,13.4766"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="9.0743,1.2266"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="14.359999999999999"/>
+        <dia:real val="14.744999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="11.399999999999999"/>
+        <dia:real val="12.199999999999999"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#Station#</dia:string>
@@ -167,6 +167,29 @@
         <dia:real val="0.69999999999999996"/>
       </dia:attribute>
       <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name">
+            <dia:string>#logger#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="type">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="value">
+            <dia:string>#logging.getLogger(__name__)#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="comment">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="visibility">
+            <dia:enum val="0"/>
+          </dia:attribute>
+          <dia:attribute name="abstract">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="class_scope">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+        </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
             <dia:string>#ser#</dia:string>
@@ -488,19 +511,19 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O1">
       <dia:attribute name="obj_pos">
-        <dia:point val="8.25,14.85"/>
+        <dia:point val="8.5,18"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="8.2,14.8;31.515,21.7"/>
+        <dia:rectangle val="8.45,17.95;31.765,24.05"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="8.25,14.85"/>
+        <dia:point val="8.5,18"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="23.215"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="6.8000000000000007"/>
+        <dia:real val="6"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#DatabManager#</dia:string>
@@ -593,6 +616,29 @@ http://docs.sqlalchemy.org/en/rel_0_8/orm/tutorial.html#adding-new-objects#</dia
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
+            <dia:string>#logger#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="type">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="value">
+            <dia:string>#logging.getLogger(__name__)#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="comment">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="visibility">
+            <dia:enum val="0"/>
+          </dia:attribute>
+          <dia:attribute name="abstract">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="class_scope">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name">
             <dia:string>#engine_url#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
@@ -672,52 +718,6 @@ http://docs.sqlalchemy.org/en/rel_0_8/orm/tutorial.html#creating-a-session
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>#Session()#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="0"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#metering#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>#Metering()#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="0"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#Sensors#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>#Sensors()#</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
             <dia:string>##</dia:string>
@@ -1008,19 +1008,19 @@ Nvarchar ne sert que pour les utilisateurs MS-SQL. #</dia:string>
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="16.2543,12.677"/>
+        <dia:point val="16.4468,13.477"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="15.5043,11.927;20.0575,15.5996"/>
+        <dia:rectangle val="15.6968,12.727;20.3075,18.7496"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="16.2543,12.677"/>
-        <dia:point val="16.2543,14.0883"/>
-        <dia:point val="19.8575,14.0883"/>
-        <dia:point val="19.8575,14.7996"/>
+        <dia:point val="16.4468,13.477"/>
+        <dia:point val="16.4468,16.0633"/>
+        <dia:point val="20.1075,16.0633"/>
+        <dia:point val="20.1075,17.9496"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
@@ -1037,8 +1037,8 @@ Nvarchar ne sert que pour les utilisateurs MS-SQL. #</dia:string>
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O0" connection="32"/>
-        <dia:connection handle="1" to="O1" connection="20"/>
+        <dia:connection handle="0" to="O0" connection="34"/>
+        <dia:connection handle="1" to="O1" connection="18"/>
       </dia:connections>
     </dia:object>
     <dia:object type="UML - SmallPackage" version="0" id="O5">
