@@ -4,7 +4,7 @@
 -- Architecture             i686-linux-gnu-thread-multi-64int         
 -- Target Database          mysql-innodb                              
 -- Input file               model.dia                                 
--- Generated at             Sat Jan 25 04:38:50 2014                  
+-- Generated at             Sat Jan 25 08:50:16 2014                  
 -- Typemap for mysql-innodb not found in input file                   
 
 -- get_constraints_drop 
