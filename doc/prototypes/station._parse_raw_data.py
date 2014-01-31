@@ -63,7 +63,7 @@ def _parse_raw_data (raw_received_meterings=""):
         last_meterings_list.append(metering)
     return last_meterings_list
 
-    
-    
+
+
 result = _parse_raw_data (raw_received_meterings)
 result
