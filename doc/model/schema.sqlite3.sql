@@ -52,7 +52,7 @@ create table Metering (
 -- get_view_create
 
 -- get_permissions_create
-
+/*
 -- get_inserts
 insert into Sensor(id, name, description, high_threshold, low_threshold, min_value, max_value, unit, unit_label, unique_key, bus_adress) values('1', 'Capteur température', 'Ce capteur permet de mesurer la température ambiante de la pièce où se trouve le module',  '16', '25', '0', '40', '° C','Température','AA','TEMP') ;
 insert into Sensor(id, name, description, high_threshold, low_threshold, min_value, max_value, unit, unit_label, unique_key, bus_adress) values('2', 'Capteur humidité', 'Ce capteur permet de mesurer l\'humidité ambiante de la pièce où se trouve le module', '30', '60', '15', '80', '%','Humidité','BA','HUM') ;
@@ -60,7 +60,7 @@ insert into Sensor(id, name, description, high_threshold, low_threshold, min_val
 insert into Sensor(id, name, description, high_threshold, low_threshold, min_value, max_value, unit, unit_label, unique_key, bus_adress) values('4', 'Capteur de dioxyde d\'azote', 'Ce capteur permet de mesurer le nombre de particule par milliard de dioxyde d\'Azote de la pièce où se trouve le module', '0', '212', '0', '390', 'Ppb','Dioxyde d\'azote','DA','NO2') ;
 insert into Sensor(id, name, description, high_threshold, low_threshold, min_value, max_value, unit, unit_label, unique_key, bus_adress) values('5', 'Capteur composant organique volatile', 'Ce capteur permet de mesurer le nombre de particules par million de composants organiques volatiles ambiant dans la pièce où se trouve le module', '0', '120', '0', '400', 'Ppm','Composant organique volatile','EA','VOC') ;
 insert into Sensor(id, name, description, high_threshold, low_threshold, min_value, max_value, unit, unit_label, unique_key, bus_adress) values('6', 'Capteur de poussière', 'Ce capteur permet de mesurer le nombre de particules fines par litre ambiant dans la pièce où se trouve le module', '0', '0,2', '0', '1', 'Pcs','Poussière','FA','Dust') ;
-
+*/
 -- get_smallpackage_post_sql
 
 -- get_associations_create
