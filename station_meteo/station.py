@@ -27,21 +27,19 @@ class Station (object):
         
     def loop (self) :
         if  _get_meterings_raw_data():
+            # ----- STORE IN DATABASE ----- #
              # refresh datab and sensor_dict:
-             datab.session.connect #?
-             self.sensor_dict = 
+             datab.session.connect # ? is the db alive?
+             # refresh sensors_dict() ?
+             self.sensor_dict = {} # refresh the dict({'name', 'id'}) from the database. sensor_dict Must be an attribute.
              
              _parse_raw_data()
-             
-             for metering in self.last_meterings_list:
-                 try:
-                     datab.session.add(metering)
-                 except Error() as err:
-                     self.logger.ERROR(err)
+             _store_meterings (self)             
         pass
 
     def _get_meterings_raw_data (self) :
         self.raw_received_meterings = self.ser.readline()
+        # try connect?
         if not 0==len(self.raw_received_meterings)
             return True
         else:
@@ -54,11 +52,18 @@ class Station (object):
         self.last_meterings_list = list() # 
         # returns 
         pass
+
     def _store_meterings (self) :
-         for metering in self.last_meterings_list:
+         for elem in self.last_meterings_list:
+             # append the right sensor_id
+             next_insert = Metering() # next row? row?
+             next_insert.sensor_id=elem['sensor_id']
+             next_insert.raw=elem['raw'] 
+             next_insert.value=elem['value'])
+             datab.session.add(next_insert)
              try:
-                 datab.session.add(metering)
+                 datab.session.commit()
              except Error() as err:
-                 self.logger.ERROR(err)
+                 self.logger.error(err)
         pass
 
