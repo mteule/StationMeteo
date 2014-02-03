@@ -7,6 +7,7 @@ import logging
 import serial
 
 from model import *
+from datab import *
 
 class Station (object):
     '''(NULL)'''
