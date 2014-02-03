@@ -5,7 +5,7 @@
 
 import logging
 import serial
-import sqlalchemy
+
 from model import *
 
 class Station (object):
@@ -41,7 +41,7 @@ class Station (object):
     def _get_meterings_raw_data (self) :
         self.raw_received_meterings = self.ser.readline()
         # try connect?
-        if not 0==len(self.raw_received_meterings)
+        if not 0==len(self.raw_received_meterings):
             return True
         else:
             return False
@@ -65,16 +65,16 @@ class Station (object):
         return last_meterings_list
 
     def _store_meterings (self) :
-         for elem in self.last_meterings_list:
-             # append the right sensor_id
-             next_insert = Metering() # next row? row?
-             next_insert.sensor_id=elem['sensor_id']
-             next_insert.raw=elem['raw'] 
-             next_insert.value=elem['value'])
-             datab.session.add(next_insert)
-             try:
-                 datab.session.commit()
-             except Error() as err:
-                 self.logger.error(err)
+        for elem in self.last_meterings_list:
+            # append the right sensor_id
+            next_insert = Metering() # next row? row?
+            next_insert.sensor_id=elem['sensor_id']
+            next_insert.raw=elem['raw'] 
+            next_insert.value=elem['value']
+            datab.session.add(next_insert)
+            try:
+                datab.session.commit()
+            except Error() as err:
+                self.logger.error(err)
         pass
 
