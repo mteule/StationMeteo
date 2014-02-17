@@ -127,4 +127,5 @@ IntegrityError: (IntegrityError) (1062, "Duplicate entry '0' for key 'PRIMARY'")
 <sqlalchemy.engine.base.ResultProxy object at 0x2f19810>
 >>> 
 
+NB: When reading model.py ninja-ide detects a problem with the 'id' column line
 
