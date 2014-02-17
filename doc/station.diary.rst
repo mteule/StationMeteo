@@ -16,6 +16,8 @@ import time:
 
     http://domeu.blogspot.fr/2011/04/time-datetime-manipulation-du-temps-en.html 
     
+Other Links:
+
 import datetime:
 
     http://docs.python.org/2/library/datetime.html
