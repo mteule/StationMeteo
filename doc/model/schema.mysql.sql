@@ -1,10 +1,10 @@
--- Parse::SQL::Dia          version 0.17                              
+-- Parse::SQL::Dia          version 0.20                              
 -- Documentation            http://search.cpan.org/dist/Parse-Dia-SQL/
 -- Environment              Perl 5.014002, /usr/bin/perl              
--- Architecture             i686-linux-gnu-thread-multi-64int         
+-- Architecture             x86_64-linux-gnu-thread-multi             
 -- Target Database          mysql-innodb                              
 -- Input file               model.dia                                 
--- Generated at             Sat Jan 25 08:50:16 2014                  
+-- Generated at             Mon Feb 17 11:40:49 2014                  
 -- Typemap for mysql-innodb not found in input file                   
 
 -- get_constraints_drop 
@@ -40,6 +40,7 @@ create table Metering (
    value     float         ,
    date      date          ,
    sensor_id int           ,
+   raw       int           ,
    constraint pk_Metering primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
