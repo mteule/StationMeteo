@@ -39,4 +39,42 @@ May not be precise enough, but we are sure this may catch any exception raised w
     >>> help(e)
 
 
+Sensor_id list:
+---------------
+Code for today: the 'where' clause with a list is somewhere in the doc, so for now we'll retrieve the full list.
+
+    mysql> grant all on test_dia.* to monty@localhost; Flush privileges;
+
+    ~/StationMeteo/station_meteo$ bpython
+
+    >>> import model
+    >>> from sqlalchemy import select
+    >>> sensor = model.Sensor()
+    >>> sens_table = sensor.__table__
+    >>> sel = select([sens_table.c.bus_adress, sens_table.c.id])
+    >>> print sel
+    SELECT `Sensor`.bus_adress, `Sensor`.id 
+    FROM `Sensor`
+    >>> res = sel.execute()
+    >>> res
+    <sqlalchemy.engine.base.ResultProxy object at 0x2d288d0>
+    >>> dict = {}
+    >>> for row in res:
+    ...     new_keyval = {row[sens_table.c.bus_adress]: row[sens_table.c.id]}
+    ...     dict.update(new_keyval.copy())
+    ... 
+    >>> dict
+    {'CO': 3L, 'TEMP': 1L, 'VOC': 5L, 'Dust': 6L, 'HUM': 2L, 'NO2': 4L}
+    >>> type(dict['CO'])
+    <type 'long'>
+    >>> 
+
+
+
+    http://docs.sqlalchemy.org/en/latest/core/tutorial.html#selecting
+
+    http://stackoverflow.com/questions/5016505/mysql-grant-all-privileges-on-database
+
+    https://stackoverflow.com/questions/19406859/sqlalchemy-convert-select-query-result-to-a-list-of-dicts
+
 

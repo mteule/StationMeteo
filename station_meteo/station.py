@@ -8,6 +8,7 @@ import serial
 import time
 
 from model import *
+from sqlalchemy import select
 
 # may not be so usefull, seems that model will be totally sufficient
 from datab import *
@@ -22,6 +23,7 @@ class Station (object):
     raw_received_meterings = ("")  # str
     metering_quantity = 0  # int
     ser = None  # serial.Serial()
+    sensor = Sensor()
 
     def __init__(self):
         self.ser = serial.Serial()
@@ -47,10 +49,10 @@ class Station (object):
         pass
 
     def store_meterings(self):
+        self.clock = time.time()  # refresh float == type(clock)
         self._parse_raw_data()
 
         # date value data
-        self._refresh_clock()
         self._append_clock()
 
         # refresh datab "is the db alive?"
@@ -59,14 +61,6 @@ class Station (object):
         self._refresh_sensor_id_dict()  # May itself test the db
         self._append_sensor_id()
         self._store_in_db()
-        pass
-
-    def _refresh_clock(self):
-        # TODO:
-        pass
-
-    def _append_clock(self):
-        # TODO:
         pass
 
     def _refresh_sensor_id_dict(self):
@@ -80,14 +74,29 @@ class Station (object):
             'NO2': 4,
             'VOC': 5,
             'Dust': 6}
+        self.sensor_id_dict.clear()
+        sens_table = self.sensor.__table__
+        sel = select([sens_table.c.bus_adress, sens_table.c.id])
+        res = sel.execute()
+        for row in res:
+            # Strange but 'id' is received as "type(id)==long"?!?
+            new_keyval = {
+                row[sens_table.c.bus_adress]: int(row[sens_table.c.id])}
+            self.sensor_id_dict.update(new_keyval.copy())
+        pass
+
+    def _append_clock(self):
+        new_keyval = {'date': self.clock}
+        for metering_dict in self.last_meterings_list:
+            metering_dict.update(new_keyval.copy())
         pass
 
     def _append_sensor_id(self):
         # TODO:
         for metering_dict in self.last_meterings_list:
             bus_adress = metering_dict['name']
-            new = {'sensor_id': self.sensor_id_dict[bus_adress]}
-            metering_dict.update(new)
+            new_keyval = {'sensor_id': self.sensor_id_dict[bus_adress]}
+            metering_dict.update(new_keyval.copy())
         pass
 
     def _get_meterings_raw_data(self):
@@ -153,12 +162,15 @@ if __name__ == "__main__":
         #Check that old meterings where del():
         station._parse_raw_data()
 
-        # Sensor_id
-        print "Test sensor_id"
+        # append clock and Sensor_id
+        print "\nTest sensor_id"
         print station.sensor_id_dict
         station._refresh_sensor_id_dict()
         print station.sensor_id_dict
         station._append_sensor_id()
-        print "updated metering list"
+        print "\nsensor_id updated metering list:"
         print station.last_meterings_list
-
+        station.clock = time.time()
+        station._append_clock()
+        print "\nclock updated metering list:"
+        print station.last_meterings_list
