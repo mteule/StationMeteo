@@ -5,9 +5,7 @@ get from the OS a date value that can be easily inserted into the SGBD.
 For the moment the easiest solution will be to get the UTC timestamp with:
 
     >>> import time
-
     >>> now = time.time()
-
     >>> now
 
     1392649039.119693
@@ -31,17 +29,11 @@ SQLAlchemyError:
 May not be precise enough, but we are sure this may catch any exception raised when trying to insert values.
      
     >>> import sqlalchemy
-
     >>> e = sqlalchemy.exc.ArgumentError
-
     >>> help(e)
-
     >>> e = sqlalchemy.exc.SQLAlchemyError
-
     >>> help(e)
-
     >>> e = sqlalchemy.exceptions
-
     >>> help(e)
 
 
