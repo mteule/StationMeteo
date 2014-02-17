@@ -24,6 +24,7 @@ class Station (object):
     metering_quantity = 0  # int
     ser = None  # serial.Serial()
     sensor = Sensor()
+    metering = Metering()
 
     def __init__(self):
         self.ser = serial.Serial()
@@ -119,6 +120,13 @@ class Station (object):
         self.logger.debug("new values for self.last_meterings_list:\n"
             + str(self.last_meterings_list))
         pass
+
+    def _insert_metering(self, metering = {}):
+        meter_table = metering.__table__
+        ins = meter_table.insert().values(
+            value='1', date='1', sensor_id='1')
+        ins.compile().params  # no usefull, done automatically by executing
+
 
     def _store_in_db(self):
         # http://pylonsbook.com/en/1.1/introducing-the-model-and-sqlalchemy.html#sql-expression-api
