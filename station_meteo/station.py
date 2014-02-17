@@ -64,16 +64,7 @@ class Station (object):
         pass
 
     def _refresh_sensor_id_dict(self):
-        # TODO: refresh from a sqlalchemy select
         # mysql> select id, bus_adress from Sensor
-        self.sensor_id_dict.clear()
-        self.sensor_id_dict = {
-            'TEMP': 1,
-            'HUM': 2,
-            'CO': 3,
-            'NO2': 4,
-            'VOC': 5,
-            'Dust': 6}
         self.sensor_id_dict.clear()
         sens_table = self.sensor.__table__
         sel = select([sens_table.c.bus_adress, sens_table.c.id])
