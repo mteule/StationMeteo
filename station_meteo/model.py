@@ -4,10 +4,9 @@ from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relation
 
-engine = create_engine('mysql://monty:passwd@localhost/test_dia')
+
 DeclarativeBase = declarative_base()
 metadata = DeclarativeBase.metadata
-metadata.bind = engine
 
 class Metering(DeclarativeBase):
     __tablename__ = 'Metering'

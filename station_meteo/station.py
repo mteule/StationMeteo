@@ -10,6 +10,9 @@ import time
 from model import *
 from sqlalchemy import select
 
+# moved here to use sqlacodegen
+engine = create_engine('mysql://monty:passwd@localhost/test_dia')
+metadata.bind = engine
 
 class Station (object):
     '''(NULL)'''
