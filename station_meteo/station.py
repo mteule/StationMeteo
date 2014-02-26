@@ -6,6 +6,7 @@
 import logging
 import serial
 import time
+import datetime
 
 from model import *
 from sqlalchemy import select
@@ -14,12 +15,13 @@ from sqlalchemy import select
 engine = create_engine('mysql://monty:passwd@localhost/test_dia')
 metadata.bind = engine
 
+
 class Station (object):
     '''(NULL)'''
 
     logger = logging.getLogger(__name__)
 
-    clock = None  # TODO: make it to have the 'date' value to insert
+    clock = datetime.datetime
     raw_received_meterings = ("")  # str
     metering_quantity = 0  # int
     ser = None  # serial.Serial()
@@ -49,7 +51,7 @@ class Station (object):
         pass
 
     def store_meterings(self):
-        self.clock = time.time()  # refresh float == type(clock)
+
         self._parse_raw_data()
 
         # date value data
@@ -77,7 +79,7 @@ class Station (object):
         pass
 
     def _append_clock(self):
-        new_keyval = {'date': self.clock}
+        new_keyval = {'date': self.clock.now()}
         for metering_dict in self.last_meterings_list:
             metering_dict.update(new_keyval.copy())
         pass
@@ -168,7 +170,6 @@ if __name__ == "__main__":
         station._append_sensor_id()
         print "\nsensor_id updated metering list:"
         print station.last_meterings_list
-        station.clock = time.time()
         station._append_clock()
         print "\nclock updated metering list:"
         print station.last_meterings_list
