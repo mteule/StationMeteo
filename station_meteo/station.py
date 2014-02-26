@@ -10,9 +10,6 @@ import time
 from model import *
 from sqlalchemy import select
 
-# may not be so usefull, seems that model will be totally sufficient
-from datab import *
-
 
 class Station (object):
     '''(NULL)'''
@@ -28,7 +25,6 @@ class Station (object):
 
     def __init__(self):
         self.ser = serial.Serial()
-        self.datab = DatabManager()
         self.last_meterings_list = list(
             dict({'name': 'some_sensor_name', 'raw': 0, 'value': 0}))
         self.sensor_id_dict = dict({'name': 'id'})
