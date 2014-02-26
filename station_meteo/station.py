@@ -9,10 +9,11 @@ import time
 import datetime
 
 from model import *
-from sqlalchemy import select
+import sqlalchemy
 
-# moved here to use sqlacodegen
-engine = create_engine('mysql://monty:passwd@localhost/test_dia')
+# moved here to use 'sqlacodegen' generated model.py
+db_url = 'mysql://monty:passwd@localhost/test_dia'
+engine = create_engine(db_url)
 metadata.bind = engine
 
 
@@ -22,54 +23,52 @@ class Station (object):
     logger = logging.getLogger(__name__)
 
     clock = datetime.datetime
-    raw_received_meterings = ("")  # str
-    metering_quantity = 0  # int
-    ser = None  # serial.Serial()
+    raw_received_meterings = ""  # str
+    ser = serial.Serial()
+
+    # TODO: pass to metering_tbl et sensor_table
     sensor = Sensor()
     metering = Metering()
 
     def __init__(self):
-        self.ser = serial.Serial()
         self.last_meterings_list = list(
             dict({'name': 'some_sensor_name', 'raw': 0, 'value': 0}))
         self.sensor_id_dict = dict({'name': 'id'})
         pass
 
-    def setup_ser(self, port='/dev/ttyUSB0', baudrate=115200):
-        # TODO: change, this is ugly.
-        self.ser = serial.Serial(port=port, baudrate=baudrate)
-        self.ser.open()
-        pass
-
     def loop(self):
-        if  self._get_meterings_raw_data():
-            self.store_meterings()
-        else:
-            # wait for a while
-            delay = 1  # seconds
-            time.sleep(delay)
+
+        self.ser.port = '/dev/ttyUSB0'
+        self.ser.baudrate = 115200
+        self.ser.open()
+
+        while True:
+            if not self._got_meterings_raw_data():  # must wait for a while
+                delay = 1  # seconds
+                time.sleep(delay)
+            else:  # store meterings
+                # TODO: copy content of store_meterings here
+                # when /test dir construction is achieved.
+                # Anyway this store_meterings function is quite usefull,
+                # we may keep it
+                self.store_meterings()
         pass
 
     def store_meterings(self):
-
+        """ """
         self._parse_raw_data()
-
-        # date value data
         self._append_clock()
-
-        # refresh datab "is the db alive?"
-        # datab.session.connect()
-
-        self._refresh_sensor_id_dict()  # May itself test the db
+        self._refresh_sensor_id_dict()  # By itself test the db connection
         self._append_sensor_id()
         self._store_in_db()
         pass
 
     def _refresh_sensor_id_dict(self):
+        """"""
         # mysql> select id, bus_adress from Sensor
         self.sensor_id_dict.clear()
         sens_table = self.sensor.__table__
-        sel = select([sens_table.c.bus_adress, sens_table.c.id])
+        sel = sqlalchemy.select([sens_table.c.bus_adress, sens_table.c.id])
         res = sel.execute()
         for row in res:
             # Strange but 'id' is received as "type(id)==long"?!?
@@ -79,20 +78,22 @@ class Station (object):
         pass
 
     def _append_clock(self):
+        """"""
         new_keyval = {'date': self.clock.now()}
         for metering_dict in self.last_meterings_list:
-            metering_dict.update(new_keyval.copy())
+            metering_dict.update(new_keyval)
         pass
 
     def _append_sensor_id(self):
-        # TODO:
+        """"""
         for metering_dict in self.last_meterings_list:
             bus_adress = metering_dict['name']
             new_keyval = {'sensor_id': self.sensor_id_dict[bus_adress]}
             metering_dict.update(new_keyval.copy())
         pass
 
-    def _get_meterings_raw_data(self):
+    def _got_meterings_raw_data(self):
+        """"""
         self.raw_received_meterings = self.ser.readline()
         # try connect?
         if not 0 == len(self.raw_received_meterings):
@@ -102,15 +103,17 @@ class Station (object):
         return found_new_line
 
     def _parse_raw_data(self):
+        """"""
         del(self.last_meterings_list[:])
         data = self.raw_received_meterings.rstrip()
         split = [elem.strip() for elem in data.split(',')]
-        metering_quantity = len(split) / 3
+        metering_quantity = len(split) / 3  # 3 params for each sensor
 
         # Check only the data won't get us into "pointer out of cast" troubles:
         if not (0 == len(split) % metering_quantity):
             raise StandartError("raw data is not consistent")
 
+        # Construct self.last_meterings_list
         metering = dict({'name': 'some_sensor_name', 'raw': 0, 'value': 0})
         for i in range(metering_quantity):
             metering['name'] = split[(i * 3 + 0)]
@@ -122,28 +125,25 @@ class Station (object):
             + str(self.last_meterings_list))
         pass
 
-    def _insert_metering(self, metering = {}):
-        meter_table = metering.__table__
+    def _insert_metering(self, meterings={}):
+        """"""
+        meter_table = self.metering.__table__
         ins = meter_table.insert().values(
-            value='1', date='1', sensor_id='1')
+            value=meterings['value'],
+            date=meterings['date'],
+            # raw=meterings['raw']  #TODO: Correct first the Dia Diagramm
+            sensor_id=meterings['sensor_id'])
         ins.compile().params  # no usefull, done automatically by executing
-
+        ins.execute()
+        self.logger.debug(ins)
 
     def _store_in_db(self):
-        # http://pylonsbook.com/en/1.1/introducing-the-model-and-sqlalchemy.html#sql-expression-api
-        # meter = Metering()
-        # meter.__table__ *may*/can? be used as page_table in the documentation:
-        # ins = meter.__table__.insert(values=dict(name=u'test', title=u'Test Page', content=u'Some content!'))
+        """"""
         for elem in self.last_meterings_list:
-            # append the right sensor_id
-            next_insert = Metering()  # next row? row?
-            next_insert.sensor_id = elem['sensor_id']
-            next_insert.raw = elem['raw']
-            next_insert.value = elem['value']
-            datab.session.add(next_insert)
             try:
-                datab.session.commit()
-            except Error() as err:
+                self._insert_metering(elem)
+            except sqlalchemy.exc.IntegrityError as err:
+                # Surely raised if the Sensor table is incomplete
                 self.logger.error(err)
         pass
 pass
@@ -163,13 +163,35 @@ if __name__ == "__main__":
         station._parse_raw_data()
 
         # append clock and Sensor_id
-        print "\nTest sensor_id"
-        print station.sensor_id_dict
+        print ("\nTest sensor_id")
+        print ((station.sensor_id_dict))
         station._refresh_sensor_id_dict()
-        print station.sensor_id_dict
+        print ((station.sensor_id_dict))
+
         station._append_sensor_id()
-        print "\nsensor_id updated metering list:"
-        print station.last_meterings_list
+        print (("\nsensor_id updated metering list:"))
+        print ((station.last_meterings_list))
+
         station._append_clock()
-        print "\nclock updated metering list:"
-        print station.last_meterings_list
+        print ("\nclock updated metering list:")
+        print ((station.last_meterings_list))
+
+        # insert metering value
+        station._insert_metering(
+            {'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
+            'raw': '-1', 'sensor_id': 1, 'name': 'TEMP', 'value': '17.40'})
+
+        # Inserting whole list of meterings
+        station._store_in_db()
+
+        # Exception while inserting metering value
+        try:
+            station._insert_metering(
+                {'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
+                'raw': '-1', 'sensor_id': 77, 'name': 'TEMP', 'value': '17.40'})
+        except sqlalchemy.exc.IntegrityError as err:
+            print ("Intending to commit a Foreign Key Constraint error:")
+            print(err)
+
+        station.last_meterings_list[4]['sensor_id'] = 77
+        station._store_in_db()
