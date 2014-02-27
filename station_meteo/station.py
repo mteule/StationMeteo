@@ -6,6 +6,9 @@
 # TODO: Docstrings
 # TODO: nosetest dir ../tests
 # TODO: Size of strings in the Dia Diagram.
+# TODO: Latin-1, utf-8 and db_url: Check the problems we'll may have soon...
+#        create_engine('mysql+mysqldb:///mydb?charset=utf8&use_unicode=0')
+#        http://docs.sqlalchemy.org/en/rel_0_8/dialects/mysql.html#unicode
 
 import logging
 import serial
