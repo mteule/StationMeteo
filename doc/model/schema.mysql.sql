@@ -4,10 +4,11 @@
 -- Architecture             i686-linux-gnu-thread-multi-64int         
 -- Target Database          mysql-innodb                              
 -- Input file               model.dia                                 
--- Generated at             Thu Feb 27 03:54:00 2014                  
+-- Generated at             Thu Feb 27 04:55:06 2014                  
 -- Typemap for mysql-innodb not found in input file                   
 
 -- get_constraints_drop 
+alter table Metering drop foreign key metering_fk_Sensor_id ;
 
 -- get_permissions_drop 
 
@@ -38,7 +39,7 @@ create table Metering (
    id        int unsigned auto_increment not null,
    value     float                               ,
    datetime  datetime                            ,
-   sensor_id int                                 ,
+   sensor_id int unsigned auto_increment         ,--  !!! REMOVE 'auto_increment' here, it will be impossible to create the in mysql with 2 'auto_increment'.
    raw       int                                 ,
    constraint pk_Metering primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -58,3 +59,6 @@ insert into Sensor(id, name, description, high_threshold, low_threshold, min_val
 -- get_smallpackage_post_sql
 
 -- get_associations_create
+alter table Metering add constraint metering_fk_Sensor_id 
+    foreign key (sensor_id)
+    references Sensor (id) ;

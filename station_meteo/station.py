@@ -7,13 +7,13 @@ import logging
 import serial
 import time
 import datetime
+import sqlalchemy
 
 from model import *
-import sqlalchemy
 
 # moved here to use 'sqlacodegen' generated model.py
 db_url = 'mysql://monty:passwd@localhost/test_dia'
-engine = create_engine(db_url)
+engine = sqlalchemy.create_engine(db_url)
 metadata.bind = engine
 
 
