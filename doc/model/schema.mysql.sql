@@ -39,7 +39,7 @@ create table Metering (
    id        int unsigned auto_increment not null,
    value     float                               ,
    datetime  datetime                            ,
-   sensor_id int unsigned auto_increment         ,--  !!! REMOVE 'auto_increment' here, it will be impossible to create the in mysql with 2 'auto_increment'.
+   sensor_id int unsigned        ,--  !!! REMOVE 'auto_increment' here, it will be impossible to create the in mysql with 2 'auto_increment'.
    raw       int                                 ,
    constraint pk_Metering primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
