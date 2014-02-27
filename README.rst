@@ -11,6 +11,12 @@ This strings contains the raw value and the 'readable' value for a set of 6 air 
 
 Each of these meterings will have to be stored in a database.
 
+Overview:
+---------
+This raw string has to be parsed into a list of meterings.
+The metering of a same string will be inserted one by one in the database.
+They will have the same datetime value.
+
 Specifications:
 ===============
 
@@ -43,6 +49,7 @@ To insert the meterings in the database, for each metering we need to replace th
 The list of the sensor_id is retrieved from the database rather than being written in the code.
 
 It is of this form:
+
     >>> station._refresh_sensor_id_dict()
     >>> station.sensor_id_dict
     {'CO': 3, 'TEMP': 1, 'VOC': 5, 'Dust': 6, 'HUM': 2, 'NO2': 4}
@@ -70,7 +77,11 @@ We therefore append these values to each metering dictionnary of the list:
 
 station._store_in_db():
 -----------------------
-We store each of the metering dict() in the database.
-Using station._insert_metering()
+We store each of the metering dict() from the list in the database.
+Using station._insert_metering().
+
+This way we can handle a possible exception raised by one metering.
+And this exception won't compromise the saving of the other meterings. 
+
 
 
