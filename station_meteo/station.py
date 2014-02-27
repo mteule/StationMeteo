@@ -25,10 +25,8 @@ class Station (object):
     clock = datetime.datetime
     raw_received_meterings = ""  # str
     ser = serial.Serial()
-
-    # TODO: pass to metering_tbl et sensor_table
-    sensor = Sensor()
-    metering = Metering()
+    sensor_table = Sensor().__table__
+    metering_table = Metering().__table__
 
     def __init__(self):
         self.last_meterings_list = list(
@@ -67,13 +65,16 @@ class Station (object):
         """"""
         # mysql> select id, bus_adress from Sensor
         self.sensor_id_dict.clear()
-        sens_table = self.sensor.__table__
-        sel = sqlalchemy.select([sens_table.c.bus_adress, sens_table.c.id])
+        sel = sqlalchemy.select([
+            self.sensor_table.c.bus_adress,
+            self.sensor_table.c.id])
         res = sel.execute()
         for row in res:
             # Strange but 'id' is received as "type(id)==long"?!?
             new_keyval = {
-                row[sens_table.c.bus_adress]: int(row[sens_table.c.id])}
+                row[self.sensor_table.c.bus_adress]
+                :
+                int(row[self.sensor_table.c.id])}
             self.sensor_id_dict.update(new_keyval.copy())
         pass
 
@@ -127,8 +128,7 @@ class Station (object):
 
     def _insert_metering(self, meterings={}):
         """"""
-        meter_table = self.metering.__table__
-        ins = meter_table.insert().values(
+        ins =  self.metering_table.insert().values(
             value=meterings['value'],
             datetime=meterings['date'],
             raw=meterings['raw'],  # TODO: Correct first the Dia Diagramm
