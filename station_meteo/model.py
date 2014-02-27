@@ -1,5 +1,6 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, Float, Integer, String
+from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -13,8 +14,10 @@ class Metering(Base):
     id = Column(Integer, primary_key=True)
     value = Column(Float)
     datetime = Column(DateTime)
-    sensor_id = Column(Integer)
+    sensor_id = Column(ForeignKey('Sensor.id'), index=True)
     raw = Column(Integer)
+
+    sensor = relationship(u'Sensor')
 
 
 class Sensor(Base):
