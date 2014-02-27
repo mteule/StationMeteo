@@ -1,5 +1,15 @@
 Step by step generation of model.py from Dia:
 =============================================
+Abstract:
+---------
+Dia diagram : :dia:
+
+.sql file generation: :parsediasql:
+
+Mysql Database creation: :mysql:
+
+Sqlalchemy declarative 'model.py' creation: :sqlacodegen:
+
 Dia diagram:
 ------------
 First we have to create the Diagram, the method is described in a tutorial [left.subtree].
@@ -33,10 +43,15 @@ Mysql Database creation:
 ------------------------
 
     $ sudo mysql -u root -p
+
     mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('nouveau_mot');
+
     mysql> GRANT ALL PRIVILEGES ON test_dia.* TO 'monty'@'localhost' IDENTIFIED BY 'passwd' WITH GRANT OPTION;
+
     mysql> use test_dia;
+
     mysql> source schema.mysql.sql;
+
     mysql> show tables;
 
 It's better to check the tables are well created.
@@ -55,6 +70,29 @@ The foreign key existence can be checked with the 2 python lines:
     sensor_id = Column(ForeignKey('Sensor.id'), index=True)
     
     sensor = relationship(u'Sensor')
+    
+Notes / TODO:
+-------------
+
+:sqlite::
+TODO: try sqlite!
+In any case we will have to produce the sqlite database to use nosetest. 
+And we may have to compare the produced model.py differences.
+doc to create the good foreign keys and have the good inserts:
+
+    Nb: there where problems with the inserts, maybe the accents.
+
+    the doc is still to be found!
+
+:sqlautocode::
+The project was replaced by sqlacodegen. 
+Anyway, the declarative model produced is more complete. 
+And it adds the database connection's url to model.py.
+
+    ~/ $ sqlautocode mysql://monty:passwd@localhost/test_dia 
+
+    ~/ $ sqlautocode mysql://monty:passwd@localhost/test_dia -d
+
 
 References:
 ===========
