@@ -3,6 +3,10 @@
 
 # Copyright (C) 2014 Mathias Teulé <mathias.te@googlemail.com>
 
+# TODO: Docstrings
+# TODO: nosetest dir ../tests
+# TODO: Size of strings in the Dia Diagram.
+
 import logging
 import serial
 import time
@@ -11,7 +15,7 @@ import sqlalchemy
 
 from model import *
 
-# moved here to use 'sqlacodegen' generated model.py
+# moved here to use a RAW 'sqlacodegen' generated model.py
 db_url = 'mysql://monty:passwd@localhost/test_dia'
 engine = sqlalchemy.create_engine(db_url)
 metadata.bind = engine
@@ -23,19 +27,33 @@ class Station (object):
     logger = logging.getLogger(__name__)
 
     clock = datetime.datetime
-    raw_received_meterings = ""  # str
     ser = serial.Serial()
+
+    # DBMS connection:
     sensor_table = Sensor().__table__
     metering_table = Metering().__table__
 
+    # "Serial Inputted/Parsed" datas
+    raw_received_meterings = ""  # str
+    last_meterings_list = list(
+            dict({
+                'name': 'some_sensor_name',
+                'raw': 0,
+                'value': 0}))
+    sensor_id_dict = dict({
+        'name_sensor_1': 'id == 1',
+        'name_sensor_2': 'id == 2',
+        'name_sensor_3': 'id == 3',
+        'name_sensor_4': 'id == 4'})
+
     def __init__(self):
-        self.last_meterings_list = list(
-            dict({'name': 'some_sensor_name', 'raw': 0, 'value': 0}))
-        self.sensor_id_dict = dict({'name': 'id'})
+        """"""
+        # TODO: when ../test dir is functionnal,
+        #        move here our setup of serial.Serial()
         pass
 
     def loop(self):
-
+        """"""
         self.ser.port = '/dev/ttyUSB0'
         self.ser.baudrate = 115200
         self.ser.open()
@@ -53,10 +71,10 @@ class Station (object):
         pass
 
     def store_meterings(self):
-        """ """
+        """"""
         self._parse_raw_data()
         self._append_clock()
-        self._refresh_sensor_id_dict()  # By itself test the db connection
+        self._refresh_sensor_id_dict()  # By itself do test the db connection
         self._append_sensor_id()
         self._store_in_db()
         pass
@@ -72,10 +90,10 @@ class Station (object):
         for row in res:
             # Strange but 'id' is received as "type(id)==long"?!?
             new_keyval = {
-                row[self.sensor_table.c.bus_adress]
-                :
+                row[self.sensor_table.c.bus_adress]:
                 int(row[self.sensor_table.c.id])}
             self.sensor_id_dict.update(new_keyval.copy())
+            # type(new_keyval) == dict() with only one key
         pass
 
     def _append_clock(self):
@@ -96,7 +114,7 @@ class Station (object):
     def _got_meterings_raw_data(self):
         """"""
         self.raw_received_meterings = self.ser.readline()
-        # try connect?
+        # does 'ser.readline()' really try to connect?
         if not 0 == len(self.raw_received_meterings):
             found_new_line = True
         else:
@@ -128,14 +146,16 @@ class Station (object):
 
     def _insert_metering(self, meterings={}):
         """"""
-        ins =  self.metering_table.insert().values(
+        ins = self.metering_table.insert().values(
             value=meterings['value'],
             datetime=meterings['date'],
-            raw=meterings['raw'],  # TODO: Correct first the Dia Diagramm
+            raw=meterings['raw'],
             sensor_id=meterings['sensor_id'])
-        ins.compile().params  # no usefull, done automatically by executing
+        # .'compile().params' is usefull for debug,
+        #        but anyway it would be done automatically when executing
+        ins.compile().params
         ins.execute()
-        self.logger.debug(ins)
+        # self.logger.debug(ins)
 
     def _store_in_db(self):
         """"""
