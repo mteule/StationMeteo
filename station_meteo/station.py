@@ -130,8 +130,8 @@ class Station (object):
         meter_table = self.metering.__table__
         ins = meter_table.insert().values(
             value=meterings['value'],
-            date=meterings['date'],
-            # raw=meterings['raw']  #TODO: Correct first the Dia Diagramm
+            datetime=meterings['date'],
+            raw=meterings['raw'],  # TODO: Correct first the Dia Diagramm
             sensor_id=meterings['sensor_id'])
         ins.compile().params  # no usefull, done automatically by executing
         ins.execute()
