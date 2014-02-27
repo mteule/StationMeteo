@@ -208,12 +208,12 @@ if __name__ == "__main__":
         station._store_in_db()
 
         # Exception while inserting metering value
+        print ("Intending to commit a Foreign Key Constraint error:")
         try:
             station._insert_metering(
                 {'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
                 'raw': '-1', 'sensor_id': 77, 'name': 'TEMP', 'value': '17.40'})
         except sqlalchemy.exc.IntegrityError as err:
-            print ("Intending to commit a Foreign Key Constraint error:")
             print(err)
 
         station.last_meterings_list[4]['sensor_id'] = 77
