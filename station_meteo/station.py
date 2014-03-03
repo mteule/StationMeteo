@@ -62,24 +62,21 @@ class Station (object):
         self.ser.open()
 
         while True:
-            if not self._got_meterings_raw_data():  # must wait for a while
+            if not self._got_meterings_raw_data():
+                # must wait for a while
                 delay = 1  # seconds
                 time.sleep(delay)
             else:  # store meterings
-                # TODO: copy content of store_meterings here
-                # when /test dir construction is achieved.
-                # Anyway this store_meterings function is quite usefull,
-                # we may keep it
-                self.store_meterings()
-        pass
-
-    def store_meterings(self):
-        """"""
-        self._parse_raw_data()
-        self._append_clock(self.clock.now())
-        self._refresh_sensor_id_dict()  # By itself do test the db connection
-        self._append_sensor_id()
-        self._store_in_db()
+                self._parse_raw_data()
+                self._append_clock(self.clock.now())
+                self._refresh_sensor_id_dict()
+                self._append_sensor_id()
+                for elem in self.last_meterings_list:
+                    try:
+                        self._insert_metering(elem)
+                    except sqlalchemy.exc.IntegrityError as err:
+                        # Surely raised if the Sensor table is incomplete
+                        self.logger.error(err)
         pass
 
     def _refresh_sensor_id_dict(self):
@@ -160,15 +157,6 @@ class Station (object):
         ins.execute()
         # self.logger.debug(ins)
 
-    def _store_in_db(self):
-        """"""
-        for elem in self.last_meterings_list:
-            try:
-                self._insert_metering(elem)
-            except sqlalchemy.exc.IntegrityError as err:
-                # Surely raised if the Sensor table is incomplete
-                self.logger.error(err)
-        pass
 pass
 
 if __name__ == "__main__":
@@ -204,9 +192,6 @@ if __name__ == "__main__":
             {'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
             'raw': '-1', 'sensor_id': 1, 'name': 'TEMP', 'value': '17.40'})
 
-        # Inserting whole list of meterings
-        station._store_in_db()
-
         # Exception while inserting metering value
         print ("Intending to commit a Foreign Key Constraint error:")
         try:
@@ -217,4 +202,3 @@ if __name__ == "__main__":
             print(err)
 
         station.last_meterings_list[4]['sensor_id'] = 77
-        station._store_in_db()
