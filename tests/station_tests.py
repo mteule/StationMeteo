@@ -93,3 +93,18 @@ class MyTest(unittest.TestCase):
         #     IntegrityError, 
         #     self.station._insert_metering(metering))
         
+    def test__got_meterings_raw_data(self):
+        def str_received():
+            return 'data received'
+            
+        def nothing_yet():
+            return '' 
+            
+        self.station.ser.readline = str_received
+        self.assertEqual(True, self.station._got_meterings_raw_data())
+        self.station.ser.readline = nothing_yet
+        self.assertEqual(False, self.station._got_meterings_raw_data())   
+        
+        
+        
+                     
