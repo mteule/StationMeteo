@@ -196,3 +196,9 @@ This may be really usefull to change easily the db_url to make test functions:
     >>> Meter.metadata.bind
     Engine(mysql://monty:passwd@localhost/test_dia)
  
+Tests Nose:
+-----------
+First use of python-nose, copying the "Learn Python the Hard Way" methods just to tests the imports.
+http://learnpythonthehardway.org/book/ex46.html
+
+The nosetests command should be ran from the /StationMeteo/station_meteo dir, not above.
