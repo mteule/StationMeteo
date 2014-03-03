@@ -76,7 +76,7 @@ class Station (object):
     def store_meterings(self):
         """"""
         self._parse_raw_data()
-        self._append_clock()
+        self._append_clock(self.clock.now())
         self._refresh_sensor_id_dict()  # By itself do test the db connection
         self._append_sensor_id()
         self._store_in_db()
@@ -99,9 +99,9 @@ class Station (object):
             # type(new_keyval) == dict() with only one key
         pass
 
-    def _append_clock(self):
+    def _append_clock(self, now):
         """"""
-        new_keyval = {'date': self.clock.now()}
+        new_keyval = {'date': now}
         for metering_dict in self.last_meterings_list:
             metering_dict.update(new_keyval)
         pass
@@ -195,7 +195,7 @@ if __name__ == "__main__":
         print (("\nsensor_id updated metering list:"))
         print ((station.last_meterings_list))
 
-        station._append_clock()
+        station._append_clock(station.clock.now())
         print ("\nclock updated metering list:")
         print ((station.last_meterings_list))
 
