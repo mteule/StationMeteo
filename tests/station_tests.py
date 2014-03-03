@@ -1,5 +1,7 @@
 import unittest
 
+import station_meteo.station
+import datetime
 from station_meteo.station import Station
 
 class MyTest(unittest.TestCase):
@@ -41,9 +43,32 @@ class MyTest(unittest.TestCase):
         {'raw': '141338', 'sensor_id': 5, 'name': 'VOC', 'value': '22.7283306121'}, 
         {'raw': '2776', 'sensor_id': 6, 'name': 'Dust', 'value': '0.0003270847'}]
         self.station.sensor_id_dict = {'CO': 3, 'TEMP': 1, 'VOC': 5, 'Dust': 6, 'HUM': 2, 'NO2': 4}
-        self.station._parse_raw_data()
+        self.station._parse_raw_data()  # TODO: see if this is too functional 
         self.station._append_sensor_id()
         self.assertEqual(a, self.station.last_meterings_list)        
         
-
+    def test__append_clock(self):
+        a = [
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '-1','sensor_id': 1, 'name': 'TEMP', 'value': '17.40'}, 
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}, 
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '4236', 'sensor_id': 4, 'name': 'NO2', 'value': '15.4445400238'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '125283', 'sensor_id': 3, 'name': 'CO', 'value': '17411.0546875000'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '141338', 'sensor_id': 5, 'name': 'VOC', 'value': '22.7283306121'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '2776', 'sensor_id': 6, 'name': 'Dust', 'value': '0.0003270847'}]
+        self.station.last_meterings_list = [
+        {'raw': '-1', 'sensor_id': 1, 'name': 'TEMP', 'value': '17.40'}, 
+        {'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}, 
+        {'raw': '4236', 'sensor_id': 4, 'name': 'NO2', 'value': '15.4445400238'}, 
+        {'raw': '125283', 'sensor_id': 3, 'name': 'CO', 'value': '17411.0546875000'}, 
+        {'raw': '141338', 'sensor_id': 5, 'name': 'VOC', 'value': '22.7283306121'}, 
+        {'raw': '2776', 'sensor_id': 6, 'name': 'Dust', 'value': '0.0003270847'}]
+        self.station._append_clock(
+            self.station.clock(2014, 2, 27, 5, 59, 28, 262085))
+        self.assertEqual(a, self.station.last_meterings_list)        
         
