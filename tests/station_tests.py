@@ -1,10 +1,14 @@
 import unittest
 
 import datetime
+
+# TODO: Find a way to catch sqlalchemy.exc.IntegrityError
 import sqlalchemy
 from sqlalchemy.exc import IntegrityError
 
 from station_meteo.station import Station
+
+# TODO: change the sqlalchemy.Engine.bind imported from the model.py file
 
 class MyTest(unittest.TestCase):
     def setUp(self):
