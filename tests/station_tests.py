@@ -1,11 +1,16 @@
-from nose.tools import station_meteo.station
-import NAME
+import unittest
 
-def setup():
-    print "SETUP!"
+class MyTest(unittest.TestCase):
+    def setUp(self):
+        self.session = 'foobar'
 
-def teardown():
-    print "TEAR DOWN!"
+    def tearDown(self):
+        self.session = None
 
-def test_basic():
-    print "I RAN!"
+    def test_foo(self):
+        a = 1
+        self.assertEqual(a, 1)
+
+    def test_bar(self):
+        b = 'data' + self.session
+        self.assertEqual(b, 'datafoobar')
