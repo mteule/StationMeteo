@@ -225,5 +225,22 @@ import unittest
             
 the 'nosetests' command still works fully well!!!
 
+Keeping UnitTest now, since it is compatible with nosetests and testing sqlalchemy.
+
+Tests Sqlalchemy Pyramid:
+--------------------------
+
+    https://www.google.fr/#q=sqlalchemy+Testing
+
+Sqlalchemy in Pyramid uses UniTests:
+    http://docs.pylonsproject.org/projects/pyramid/en/1.4-branch/tutorials/wiki2/tests.html
+
+Example with UnitTest:
+
+    http://sontek.net/blog/detail/writing-tests-for-pyramid-and-sqlalchemy
+
+Example with nose:
+
+    http://alextechrants.blogspot.fr/2013/08/unit-testing-sqlalchemy-apps.html
 
 
