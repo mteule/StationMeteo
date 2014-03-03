@@ -243,4 +243,10 @@ Example with nose:
 
     http://alextechrants.blogspot.fr/2013/08/unit-testing-sqlalchemy-apps.html
 
+>>> class TestFonctionGet(unittest.TestCase):
+...     pass
+...     
+... 
+>>> help(TestFonctionGet.assertRaises())
+>>> TestFonctionGet.
 
