@@ -66,7 +66,8 @@ class Station (object):
                 # must wait for a while
                 delay = 1  # seconds
                 time.sleep(delay)
-            else:  # store meterings
+            else:
+                # store meterings
                 self._parse_raw_data()
                 self._append_clock(self.clock.now())
                 self._refresh_sensor_id_dict()
@@ -156,36 +157,12 @@ class Station (object):
         ins.compile().params
         ins.execute()
         # self.logger.debug(ins)
-
 pass
 
 if __name__ == "__main__":
         logging.basicConfig(level=logging.DEBUG)
         station = Station()
         station.logger.setLevel("DEBUG")
-
-        logging.debug("Testing station.raw_received_meterings()")
-        station.raw_received_meterings = (
-            "TEMP,-1,17.40,HUM,-1,57.50,NO2,4236,15.4445400238,CO,125283," +
-            "17411.0546875000,VOC,141338,22.7283306121,Dust,2776,0.0003270847" +
-            "\n\r")
-        station._parse_raw_data()
-        #Check that old meterings where del():
-        station._parse_raw_data()
-
-        # append clock and Sensor_id
-        print ("\nTest sensor_id")
-        print ((station.sensor_id_dict))
-        station._refresh_sensor_id_dict()
-        print ((station.sensor_id_dict))
-
-        station._append_sensor_id()
-        print (("\nsensor_id updated metering list:"))
-        print ((station.last_meterings_list))
-
-        station._append_clock(station.clock.now())
-        print ("\nclock updated metering list:")
-        print ((station.last_meterings_list))
 
         # insert metering value
         station._insert_metering(
@@ -201,4 +178,3 @@ if __name__ == "__main__":
         except sqlalchemy.exc.IntegrityError as err:
             print(err)
 
-        station.last_meterings_list[4]['sensor_id'] = 77
