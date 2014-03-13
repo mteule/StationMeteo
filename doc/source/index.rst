@@ -11,7 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-
+   intro
+   specifications
+   station.diary
 
 Indices and tables
 ==================
