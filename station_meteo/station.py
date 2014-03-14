@@ -3,8 +3,9 @@
 
 # Copyright (C) 2014 Mathias Teulé <mathias.te@googlemail.com>
 
+# TODO: Split attributes into Last_Meterings() and DBMS_Manager()
 # TODO: Docstrings
-# TODO: nosetest dir ../tests
+# TODO: nosetest dir ../tests -> tests to have autocode in sphinx
 # TODO: Size of strings in the Dia Diagram.
 # TODO: Latin-1, utf-8 and db_url: Check the problems we'll may have soon...
 #        create_engine('mysql+mysqldb:///mydb?charset=utf8&use_unicode=0')
