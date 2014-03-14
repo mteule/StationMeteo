@@ -19,7 +19,9 @@ class LastMeterings (object):
         'name_sensor_4': 'id == 4'})
 
     def _parse_raw_string(self):
-        """"""
+        """
+        Converts the raw_string to a list of metering dict
+        """
         del(self.last_meterings_list[:])
         data = self.raw_string.rstrip()
         split = [elem.strip() for elem in data.split(',')]

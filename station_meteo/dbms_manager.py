@@ -22,6 +22,7 @@ class DBMS_Manager (object):
     def _refresh_sensor_id_dict(self):
         """"""
         # mysql> select id, bus_adress from Sensor
+        #TODO: this attribute has passed to another class!
         self.sensor_id_dict.clear()
         sel = sqlalchemy.select([
             self.sensor_table.c.bus_adress,
