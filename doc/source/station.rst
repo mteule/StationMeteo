@@ -1,7 +1,5 @@
-station_meteo
-=============
+station_meteo.station
+=====================
 
-station
--------
 .. automodule:: station_meteo.station
    :members:

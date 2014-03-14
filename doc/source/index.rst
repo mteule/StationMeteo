@@ -15,6 +15,7 @@ Contents:
    specifications
    station.diary
    station
+   model
 
 Indices and tables
 ==================
