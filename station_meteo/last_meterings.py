@@ -5,7 +5,8 @@
 
 class LastMeterings (object):
 
-    raw_string = ""  # str
+    raw_string = ""
+    #TODO: rename to "list"
     last_meterings_list = list(
             dict({
                 'name': 'some_sensor_name',
@@ -41,14 +42,23 @@ class LastMeterings (object):
         pass
 
     def _append_clock(self, now):
-        """"""
+        """
+        the 'now' param has to be of the datetime.datetime format to be 
+        used latter with sqlalchemy. 
+        """
         new_keyval = {'date': now}
         for metering_dict in self.last_meterings_list:
             metering_dict.update(new_keyval)
         pass
 
     def _append_sensor_id(self):
-        """"""
+        """
+        Appends the sensor id of the metering 
+        to each metering dict from the list.
+
+        It uses the data from the sensor_id_dict attribute.
+        But this sensor_id_dict has to be refreshed elsewhere.          
+        """
         for metering_dict in self.last_meterings_list:
             bus_adress = metering_dict['name']
             new_keyval = {'sensor_id': self.sensor_id_dict[bus_adress]}
