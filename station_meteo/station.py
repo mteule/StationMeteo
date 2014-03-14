@@ -25,6 +25,7 @@ import sqlalchemy
 
 from model import *
 
+# TODO: rm, moved to DBMS_Manager()
 # moved here to use a RAW 'sqlacodegen' generated model.py
 db_url = 'mysql://monty:passwd@localhost/test_dia'
 engine = sqlalchemy.create_engine(db_url)
@@ -32,17 +33,22 @@ metadata.bind = engine
 
 
 class Station (object):
-    '''(NULL)'''
+    """
+    Connect the Serial port to the string parser "LastMeterings()" and the dbms manager "DBMS_Manager()" 
+
+    """
 
     logger = logging.getLogger(__name__)
 
     clock = datetime.datetime
     ser = serial.Serial()
 
+    # TODO: rm, moved to DBMS_Manager()
     # DBMS connection:
     sensor_table = Sensor().__table__
     metering_table = Metering().__table__
 
+    # TODO: remove all this part when it is switched towards LastMeterings()
     # "Serial Inputted/Parsed" datas
     raw_received_meterings = ""  # str
     last_meterings_list = list(
@@ -87,6 +93,7 @@ class Station (object):
                         self.logger.error(err)
         pass
 
+    # TODO: rm, moved to DBMS_Manager()
     def _refresh_sensor_id_dict(self):
         """"""
         # mysql> select id, bus_adress from Sensor
@@ -104,6 +111,7 @@ class Station (object):
             # type(new_keyval) == dict() with only one key
         pass
 
+    # TODO: rm, moved to LastMeterings()
     def _append_clock(self, now):
         """"""
         new_keyval = {'date': now}
@@ -111,6 +119,7 @@ class Station (object):
             metering_dict.update(new_keyval)
         pass
 
+    # TODO: rm, moved to LastMeterings()
     def _append_sensor_id(self):
         """"""
         for metering_dict in self.last_meterings_list:
@@ -129,6 +138,7 @@ class Station (object):
             found_new_line = False
         return found_new_line
 
+    # TODO: rm, moved to LastMeterings()
     def _parse_raw_data(self):
         """"""
         del(self.last_meterings_list[:])
@@ -151,7 +161,7 @@ class Station (object):
         self.logger.debug("new values for self.last_meterings_list:\n"
             + str(self.last_meterings_list))
         pass
-
+    # TODO: rm, moved to DBMS_Manager()
     def _insert_metering(self, meterings={}):
         """"""
         ins = self.metering_table.insert().values(
