@@ -3,6 +3,12 @@
 
 # Copyright (C) 2014 Mathias Teulé <mathias.te@googlemail.com>
 
+"""
+This is the main module of the package.
+
+It's function "loop()" has to store the meterings data received from a serial port into a SQL DBMS database.
+"""
+
 # TODO: Split attributes into Last_Meterings() and DBMS_Manager()
 # TODO: Docstrings
 # TODO: nosetest dir ../tests -> tests to have autocode in sphinx
