@@ -33,8 +33,8 @@ class Test_LastMeterings(unittest.TestCase):
         {'raw': '125283', 'name': 'CO', 'value': '17411.0546875000'}, 
         {'raw': '141338', 'name': 'VOC', 'value': '22.7283306121'}, 
         {'raw': '2776', 'name': 'Dust', 'value': '0.0003270847'}]
-        self.station._parse_raw_data()
-        self.assertEqual(a, self.station.last_meterings_list)
+        self.last_meterings.parse_raw_string()
+        self.assertEqual(a, self.last_meterings.list)
         pass
 
 
