@@ -30,4 +30,26 @@ class Test_DBMS_Manager(unittest.TestCase):
         a = {'CO': 3, 'TEMP': 1, 'VOC': 5, 'Dust': 6, 'HUM': 2, 'NO2': 4}
         sensor_id_dict = self.dbms_manager.retrieve_sensor_id_dict()
         self.assertEqual(a, sensor_id_dict)
-        pass 
+        pass
+        
+    def test_insert_metering(self):
+        metering = {
+            'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
+            'raw': '-1', 'sensor_id': 1, 'name': 'TEMP', 'value': '17.40'}
+        # functionnal test:
+        self.dbms_manager.insert_metering(metering)
+        
+        # Raising an Error:
+        metering = {  # wrong sensor id!
+            'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
+            'raw': '-1', 'sensor_id': 77, 'name': 'TEMP', 'value': '17.40'}
+        # TODO: pass it into a try catch, it doesn't catch the exception,
+        #        maybe because it s raised from another package. 
+        # self.assertRaises(
+        #     IntegrityError, 
+        #     self.dbms_manager.insert_metering(metering))
+
+
+
+
+
