@@ -10,7 +10,7 @@ from station_meteo.station import Station
 
 # TODO: change the sqlalchemy.Engine.bind imported from the model.py file
 
-class MyTest(unittest.TestCase):
+class MyTest(unittest.TestCase): #TODO: Find a name!
     def setUp(self):
         self.session = 'foobar'
         self.station = Station()
