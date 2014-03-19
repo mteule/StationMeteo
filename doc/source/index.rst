@@ -14,8 +14,7 @@ Contents:
    intro
    specifications
    station.diary
-   station
-   model
+   modules
 
 Indices and tables
 ==================
