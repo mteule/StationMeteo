@@ -6,6 +6,15 @@
 import sqlalchemy
 from model import Sensor, Metering
 
+"""
+This dbms_manager module will be used to interact with databases.
+
+It is separated from, but uses, the sqlalchemy declarative model, 
+imported as model.py.
+
+It initializes the globals values of the declarative model
+
+"""
 
 # moved here to use a RAW 'sqlacodegen' generated model.py
 db_url = 'mysql://monty:passwd@localhost/test_dia'
@@ -14,16 +23,27 @@ metadata.bind = engine
 
 
 class DBMS_Manager (object):
-
+    """
+    Standart object used to gather all the operation on the DBMS.
+    """
     # DBMS connection:
     sensor_table = Sensor().__table__
     metering_table = Metering().__table__
 
-    def _refresh_sensor_id_dict(self):
-        """"""
-        # mysql> select id, bus_adress from Sensor
-        #TODO: this attribute has passed to another class!
-        self.sensor_id_dict.clear()
+    def retrieve_sensor_id_dict(self):
+        """
+        Retrieve a sensor_id_dict from the database.
+        The reference of the dict is given as the return value.
+        
+        It's content corresponds to a simple select, for example with mysql:
+            mysql> select id, bus_adress from Sensor;
+            
+        the returned dict has to look like this:
+        
+        {'CO': 3, 'TEMP': 1, 'VOC': 5, 'Dust': 6, 'HUM': 2, 'NO2': 4}
+        """
+
+        sensor_id_dict = dict()
         sel = sqlalchemy.select([
             self.sensor_table.c.bus_adress,
             self.sensor_table.c.id])
@@ -33,12 +53,28 @@ class DBMS_Manager (object):
             new_keyval = {
                 row[self.sensor_table.c.bus_adress]:
                 int(row[self.sensor_table.c.id])}
-            self.sensor_id_dict.update(new_keyval.copy())
+            sensor_id_dict.update(new_keyval.copy())
             # type(new_keyval) == dict() with only one key
-        pass
+        return sensor_id_dict
 
-    def _insert_metering(self, meterings={}):
-        """"""
+    def insert_metering(self, meterings={}):
+        """
+        Simply use the sqlalchemy DBMS connection 
+        to insert the values of a metering.
+        The metering values are passed as a simple dict().
+        
+        For example:
+            
+            {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+            'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}
+            
+        The only keys that will be inserted will be:
+        
+            meterings['value'],
+            meterings['date'],
+            meterings['raw'],
+            meterings['sensor_id']
+        """
         ins = self.metering_table.insert().values(
             value=meterings['value'],
             datetime=meterings['date'],
