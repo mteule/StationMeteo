@@ -6,7 +6,6 @@
 class LastMeterings (object):
     """"""
     raw_string = ""
-    #TODO: rename to "list"
     list = list(
             dict({
                 'name': 'some_sensor_name',
