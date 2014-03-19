@@ -52,3 +52,32 @@ class Test_LastMeterings(unittest.TestCase):
         self.assertEqual(a, self.last_meterings.list)
         pass
 
+    def test_append_clock(self):
+        """"""
+        a = [
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '-1','sensor_id': 1, 'name': 'TEMP', 'value': '17.40'}, 
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}, 
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '4236', 'sensor_id': 4, 'name': 'NO2', 'value': '15.4445400238'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '125283', 'sensor_id': 3, 'name': 'CO', 'value': '17411.0546875000'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '141338', 'sensor_id': 5, 'name': 'VOC', 'value': '22.7283306121'},
+    {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085), 
+    'raw': '2776', 'sensor_id': 6, 'name': 'Dust', 'value': '0.0003270847'}]
+        
+        self.last_meterings.list = [
+        {'raw': '-1', 'sensor_id': 1, 'name': 'TEMP', 'value': '17.40'}, 
+        {'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}, 
+        {'raw': '4236', 'sensor_id': 4, 'name': 'NO2', 'value': '15.4445400238'}, 
+        {'raw': '125283', 'sensor_id': 3, 'name': 'CO', 'value': '17411.0546875000'}, 
+        {'raw': '141338', 'sensor_id': 5, 'name': 'VOC', 'value': '22.7283306121'}, 
+        {'raw': '2776', 'sensor_id': 6, 'name': 'Dust', 'value': '0.0003270847'}]
+        
+        self.last_meterings.append_clock(
+            datetime.datetime(2014, 2, 27, 5, 59, 28, 262085))
+        self.assertEqual(a, self.last_meterings.list)        
+        pass
+ 
