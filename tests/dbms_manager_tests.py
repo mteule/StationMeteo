@@ -39,7 +39,7 @@ class Test_DBMS_Manager(unittest.TestCase):
         # functionnal test:
         self.dbms_manager.insert_metering(metering)
         
-        # Raising an Error:
+        # Raising an Error: #TODO: Maybe needs another function.
         metering = {  # wrong sensor id!
             'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
             'raw': '-1', 'sensor_id': 77, 'name': 'TEMP', 'value': '17.40'}

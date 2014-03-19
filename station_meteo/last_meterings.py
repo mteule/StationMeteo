@@ -4,10 +4,10 @@
 # Copyright (C) 2014 Mathias Teulé <mathias.te@googlemail.com>
 
 class LastMeterings (object):
-
+    """"""
     raw_string = ""
     #TODO: rename to "list"
-    last_meterings_list = list(
+    list = list(
             dict({
                 'name': 'some_sensor_name',
                 'raw': 0,
@@ -18,11 +18,11 @@ class LastMeterings (object):
         'name_sensor_3': 'id == 3',
         'name_sensor_4': 'id == 4'})
 
-    def _parse_raw_string(self):
+    def parse_raw_string(self):
         """
         Converts the raw_string to a list of metering dict
         """
-        del(self.last_meterings_list[:])
+        del(self.list[:])
         data = self.raw_string.rstrip()
         split = [elem.strip() for elem in data.split(',')]
         metering_quantity = len(split) / 3  # 3 params for each sensor
@@ -31,29 +31,29 @@ class LastMeterings (object):
         if not (0 == len(split) % metering_quantity):
             raise StandartError("raw data is not consistent")
 
-        # Construct self.last_meterings_list
+        # Construct self.list
         metering = dict({'name': 'some_sensor_name', 'raw': 0, 'value': 0})
         for i in range(metering_quantity):
             metering['name'] = split[(i * 3 + 0)]
             metering['raw'] = split[(i * 3 + 1)]
             metering['value'] = split[(i * 3 + 2)]
-            self.last_meterings_list.append(metering.copy())
+            self.list.append(metering.copy())
 
-        self.logger.debug("new values for self.last_meterings_list:\n"
-            + str(self.last_meterings_list))
+        self.logger.debug("new values for self.list:\n"
+            + str(self.list))
         pass
 
-    def _append_clock(self, now):
+    def append_clock(self, now):
         """
         the 'now' param has to be of the datetime.datetime format to be 
         used latter with sqlalchemy. 
         """
         new_keyval = {'date': now}
-        for metering_dict in self.last_meterings_list:
+        for metering_dict in self.list:
             metering_dict.update(new_keyval)
         pass
 
-    def _append_sensor_id(self):
+    def append_sensor_id(self):
         """
         Appends the sensor id of the metering 
         to each metering dict from the list.
@@ -61,7 +61,7 @@ class LastMeterings (object):
         It uses the data from the sensor_id_dict attribute.
         But this sensor_id_dict has to be refreshed elsewhere.          
         """
-        for metering_dict in self.last_meterings_list:
+        for metering_dict in self.list:
             bus_adress = metering_dict['name']
             new_keyval = {'sensor_id': self.sensor_id_dict[bus_adress]}
             metering_dict.update(new_keyval.copy())
