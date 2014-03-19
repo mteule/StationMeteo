@@ -4,7 +4,8 @@
 # Copyright (C) 2014 Mathias Teulé <mathias.te@googlemail.com>
 
 import sqlalchemy
-from model import Sensor, Metering
+
+from model import Sensor, Metering, metadata
 
 """
 This dbms_manager module will be used to interact with databases.
