@@ -6,10 +6,11 @@
 """
 This is the main module of the package.
 
-It's function "loop()" has to store the meterings data received from a serial port into a SQL DBMS database.
+It's function "loop()" has to store the meterings data
+received from a serial port into a SQL DBMS database.
 """
 
-# TODO: Split attributes into Last_Meterings() and DBMS_Manager()
+# TODO: DONE!!! Split attributes into Last_Meterings() and DBMS_Manager()
 # TODO: Docstrings
 # TODO: nosetest dir ../tests -> tests to have autocode in sphinx
 # TODO: Size of strings in the Dia Diagram.
@@ -23,16 +24,16 @@ import time
 import datetime
 import sqlalchemy
 
-
+# local modules
 import last_meterings
 import dbms_manager
 
+
 class Station (object):
     """
-    Connect the Serial port to the string parser "LastMeterings()" and the dbms manager "DBMS_Manager()" 
-
+    Connect the Serial port to the string parser "LastMeterings()"
+    and the dbms manager "DBMS_Manager()"
     """
-
     logger = logging.getLogger(__name__)
 
     ser = serial.Serial()
@@ -41,38 +42,37 @@ class Station (object):
 
     def __init__(self):
         """"""
-        # TODO: when ../test dir is functionnal,
-        #        move here our setup of serial.Serial()
+        self.ser.port = '/dev/ttyUSB0'
+        self.ser.baudrate = 115200
+        self.ser.open()
         pass
 
-
-    def loop_new(self):
+    def loop(self):
         """"""
-        #self.ser.port = '/dev/ttyUSB0'
-        #self.ser.baudrate = 115200
-        #self.ser.open()
-
         while True:
-            self.last_meterings.raw_string = self.ser.readline()
-            if not self.last_meterings.raw_string:
-                # must wait for a while
-                delay = 1  # seconds
-                time.sleep(delay)
-            else:
-                # store meterings
-                self.last_meterings.parse_raw_string()
-                self.last_meterings.append_clock(datetime.datetime.now())
-                self.last_meterings.sensor_id_dict = self.dbms_manager.retrieve_sensor_id_dict()
-                self.last_meterings.append_sensor_id()
-                for elem in self.last_meterings.list:
-                    try:
-                        self.dbms_manager.insert_metering(elem)
-                    except sqlalchemy.exc.IntegrityError as err:
-                        # Surely raised if the Sensor table is incomplete
-                        self.logger.error(err)
+            self.scan_for_new_data_string()
         pass
 
- 
+    def scan_for_new_data_string(self):
+        """"""
+        self.last_meterings.raw_string = self.ser.readline()
+        if not self.last_meterings.raw_string:
+            # must wait for a while
+            delay = 1  # seconds
+            time.sleep(delay)
+        else:
+            # store meterings
+            self.last_meterings.parse_raw_string()
+            self.last_meterings.append_clock(datetime.datetime.now())
+            self.last_meterings.sensor_id_dict = \
+                self.dbms_manager.retrieve_sensor_id_dict()
+            self.last_meterings.append_sensor_id()
+            for elem in self.last_meterings.list:
+                try:
+                    self.dbms_manager.insert_metering(elem)
+                except sqlalchemy.exc.IntegrityError as err:
+                    # Surely raised if the Sensor table is incomplete
+                    self.logger.error(err)
 
     def _got_meterings_raw_data(self):
         """"""
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 #        try:
 #            station._insert_metering(
 #                {'date': datetime.datetime(2014, 2, 26, 3, 10, 38, 371623),
-#                'raw': '-1', 'sensor_id': 77, 'name': 'TEMP', 'value': '17.40'})
+#                'raw': '-1', 'sensor_id': 77, 'name':
+#                'TEMP', 'value': '17.40'})
 #        except sqlalchemy.exc.IntegrityError as err:
 #            print(err)
-
