@@ -15,6 +15,7 @@ Contents:
    specifications
    station.diary
    modules
+   station
 
 Indices and tables
 ==================
