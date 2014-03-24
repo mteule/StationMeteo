@@ -45,6 +45,11 @@ class Station (object):
     clock = datetime.datetime
     ser = serial.Serial()
 
+    # The new classes:
+    last_meterings = last_meterings.LastMeterings()
+    dbms_manager = dbms_manager.DBMS_Manager()
+
+
     # TODO: rm, moved to DBMS_Manager()
     # DBMS connection:
     sensor_table = Sensor().__table__
@@ -97,25 +102,25 @@ class Station (object):
 
     def loop_new(self):
         """"""
-        self.ser.port = '/dev/ttyUSB0'
-        self.ser.baudrate = 115200
-        self.ser.open()
+        #self.ser.port = '/dev/ttyUSB0'
+        #self.ser.baudrate = 115200
+        #self.ser.open()
 
         while True:
-            
-            if not self._got_meterings_raw_data():
+            self.last_meterings.raw_string = self.ser.readline()
+            if not self.last_meterings.raw_string:
                 # must wait for a while
                 delay = 1  # seconds
                 time.sleep(delay)
             else:
                 # store meterings
-                self._parse_raw_data()
-                self._append_clock(self.clock.now())
-                self._refresh_sensor_id_dict()
-                self._append_sensor_id()
-                for elem in self.last_meterings_list:
+                self.last_meterings.parse_raw_string()
+                self.last_meterings.append_clock(datetime.datetime.now())
+                self.last_meterings.sensor_id_dict = self.dbms_manager.retrieve_sensor_id_dict()
+                self.last_meterings.append_sensor_id()
+                for elem in self.last_meterings.list:
                     try:
-                        self._insert_metering(elem)
+                        self.dbms_manager.insert_metering(elem)
                     except sqlalchemy.exc.IntegrityError as err:
                         # Surely raised if the Sensor table is incomplete
                         self.logger.error(err)
