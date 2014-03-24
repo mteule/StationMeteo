@@ -1,16 +1,17 @@
 import unittest
 
-import datetime
-
-# TODO: Find a way to catch sqlalchemy.exc.IntegrityError
-import sqlalchemy
-from sqlalchemy.exc import IntegrityError
-
 from station_meteo.station import Station
-
 # TODO: change the sqlalchemy.Engine.bind imported from the model.py file
 
-class MyTest(unittest.TestCase): #TODO: Find a name!
+class FakeSerial(object):
+
+    def __init__(self):
+        pass
+    pass
+
+
+class MyTest(unittest.TestCase):  # TODO: Find a name!
+    """"""
     def setUp(self):
         self.session = 'foobar'
         self.station = Station()
@@ -19,14 +20,14 @@ class MyTest(unittest.TestCase): #TODO: Find a name!
             "17411.0546875000,VOC,141338,22.7283306121,Dust,2776,0.0003270847" +
             "\n\r")
         pass
-        
+
     def tearDown(self):
         self.session = None
         del self.station  # TODO: know if a close() function is necessary
         pass
 
 
-        
-        
-        
-                     
+
+
+
+
