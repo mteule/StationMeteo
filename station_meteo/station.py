@@ -31,6 +31,8 @@ db_url = 'mysql://monty:passwd@localhost/test_dia'
 engine = sqlalchemy.create_engine(db_url)
 metadata.bind = engine
 
+import last_meterings
+import dbms_manager
 
 class Station (object):
     """
@@ -75,6 +77,32 @@ class Station (object):
         self.ser.open()
 
         while True:
+            if not self._got_meterings_raw_data():
+                # must wait for a while
+                delay = 1  # seconds
+                time.sleep(delay)
+            else:
+                # store meterings
+                self._parse_raw_data()
+                self._append_clock(self.clock.now())
+                self._refresh_sensor_id_dict()
+                self._append_sensor_id()
+                for elem in self.last_meterings_list:
+                    try:
+                        self._insert_metering(elem)
+                    except sqlalchemy.exc.IntegrityError as err:
+                        # Surely raised if the Sensor table is incomplete
+                        self.logger.error(err)
+        pass
+
+    def loop_new(self):
+        """"""
+        self.ser.port = '/dev/ttyUSB0'
+        self.ser.baudrate = 115200
+        self.ser.open()
+
+        while True:
+            
             if not self._got_meterings_raw_data():
                 # must wait for a while
                 delay = 1  # seconds
