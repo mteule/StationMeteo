@@ -6,7 +6,6 @@ Documentation
 
 .. automodule:: station_meteo.last_meterings
    :members:
-   :undoc-members:
    
 Example of use
 ^^^^^^^^^^^^^^^

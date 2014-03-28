@@ -2,6 +2,15 @@
 station_meteo.dbms_manager
 --------------------------
 
+Documentation
+^^^^^^^^^^^^^
+
+.. automodule:: station_meteo.dbms_manager
+   :members:
+
+Example of use
+^^^^^^^^^^^^^^^
+
 >>> import dbms_manager
 >>> dbms_manager = dbms_manager.DBMS_Manager()
 >>> sensor_id_dict = dbms_manager.retrieve_sensor_id_dict()
@@ -10,8 +19,5 @@ station_meteo.dbms_manager
 >>> 
 
 
-.. automodule:: station_meteo.dbms_manager
-   :members:
-   :undoc-members:
 
 
