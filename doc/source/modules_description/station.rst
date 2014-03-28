@@ -2,10 +2,16 @@
 station_meteo.station
 ---------------------
 
+Documentation
+^^^^^^^^^^^^^
+
 .. automodule:: station_meteo.station
    :members:
 
-Example of use:
+Example of use
+^^^^^^^^^^^^^^^
+
+Running the loop() with a continous input of raw string csv data:
 
 >>> import station
 >>> stat = station.Station()
@@ -18,13 +24,20 @@ Example of use:
 ...     
 ... 
 >>> stat.ser.readline = return_good_data
->>> stat.loop_new()
+>>> stat.loop()
 
-$ mysql -u monty -p
+Then checking the resulted added values in the dbms. 
+Depending of the computers, we note that the quantity of raw strings treated every second can be quite low!
 
-mysql> use test_dia;
-mysql> show tables;
-mysql> select * from Metering;
+.. code-block:: console
+
+    $ mysql -u monty -p
+
+.. code-block:: mysql
+
+    mysql> use test_dia;
+    mysql> show tables;
+    mysql> select * from Metering;
 
 
 
