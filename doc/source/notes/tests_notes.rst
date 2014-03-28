@@ -7,3 +7,5 @@ From the documentation it seems we need to us it with a 'with' statement and the
 
 >>> import unittest
 >>> help(unittest.TestCase.assertRaises)
+
+    http://stackoverflow.com/questions/129507/how-do-you-test-that-a-python-function-throws-an-exception
