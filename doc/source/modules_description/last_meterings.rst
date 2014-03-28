@@ -1,6 +1,16 @@
 station_meteo.last_meterings
 ----------------------------
 
+Documentation
+^^^^^^^^^^^^^
+
+.. automodule:: station_meteo.last_meterings
+   :members:
+   :undoc-members:
+   
+Example of use
+^^^^^^^^^^^^^^^
+
 >>> import last_meterings
 >>> last_m = last_meterings.LastMeterings()
 >>> last_m.raw_string = (
@@ -34,9 +44,4 @@ me.datetime(2014, 3, 24, 15, 15, 27, 806922), 'raw': '-1', 'name': 'HUM', 'value
 VOC', 'value': '22.7283306121'}, {'date': datetime.datetime(2014, 3, 24, 15, 15, 27, 806922), 'raw': '2776', 'sensor_id': 6,
 'name': 'Dust', 'value': '0.0003270847'}]
 
-
-.. automodule:: station_meteo.last_meterings
-   :members:
-   :undoc-members:
-   
 
