@@ -2,6 +2,11 @@
 station_meteo.station
 ---------------------
 
+.. automodule:: station_meteo.station
+   :members:
+
+Example of use:
+
 >>> import station
 >>> stat = station.Station()
 >>> def return_good_data():
@@ -21,8 +26,5 @@ mysql> use test_dia;
 mysql> show tables;
 mysql> select * from Metering;
 
-.. automodule:: station_meteo.station
-   :members:
-   :undoc-members:
 
 
