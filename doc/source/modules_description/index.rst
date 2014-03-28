@@ -10,3 +10,4 @@
     station
     last_meterings
     dbms_manager
+    model
