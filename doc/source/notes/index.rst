@@ -10,3 +10,4 @@
     last_meterings_notes
     dbms_manager_notes
     model_notes
+    tests_notes
