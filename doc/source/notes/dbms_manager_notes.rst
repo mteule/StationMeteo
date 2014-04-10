@@ -4,7 +4,7 @@ dbms_manager
 
 Sensor_id list
 ---------------
-Code for today: the 'where' clause with a list is somewhere in the doc, so for now we'll retrieve the full list.
+Code for today: the 'where' clause with a list stayed somewhere in the doc, so for now we'll retrieve the full list.
 
     mysql> grant all on test_dia.* to monty@localhost; Flush privileges;
 
@@ -90,6 +90,7 @@ Insert metering value
     <sqlalchemy.engine.base.ResultProxy object at 0x2f19810>
     >>> 
 
+* AUTOINCREMENT problem
 NB: When reading model.py ninja-ide detects a problem with the 'id' column line
 But the problem doesn't comme from this column but from the "Duplicate entry '0' for key 'PRIMARY'".
 
@@ -100,7 +101,12 @@ In fact by looking for the AUTOINCREMENT mention and sqlalchemy:
     http://docs.sqlalchemy.org/en/rel_0_8/dialects/mysql.html#auto-increment-behavior
 
 It appears that when created with sqlalchemy the table will have this functionnality.
-But in our tedia2sql generated file this does not appear.
+But in our tedia2sql generated file this does not appear:
+
+The 'id' lacks the AUTOINCREMENT mention.
+
+
+* Cheking tedia2sql generated DB differs from sqlalchemy generated DB: 
 
 Indeed, dropping the metering table and creating it with sqlalchemy:
 
@@ -108,14 +114,14 @@ Indeed, dropping the metering table and creating it with sqlalchemy:
 
     >>> metering.__table__.create()
 
-    The script DO work pretty well finally.
+
+The script DO work pretty well finally.
 
     mysql> select * from Metering;
 
 
-
-SQLAlchemyError
-----------------
+SQLAlchemyError & IntegrityError
+--------------------------------
 May not be precise enough, but we are sure this may catch any exception raised when trying to insert values.
      
     >>> import sqlalchemy
@@ -126,4 +132,6 @@ May not be precise enough, but we are sure this may catch any exception raised w
     >>> e = sqlalchemy.exceptions
     >>> help(e)
 
+Above in the python prompt we see that by raising an insert exception we have the exact class, that inheritates from SQLAlchemyError.
+We will just have to provoke the exception to see the exact expected exception class.
 
