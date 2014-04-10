@@ -40,11 +40,11 @@ class Station (object):
     Attributes:
     
     :param ser: The RS232 connection to the station's hardware.
-    :type ser: :class: `serial.Serial` instance
+    :type ser: :class:`serial.Serial` instance
     :param last_meterings: The string parser
-    :type last_meterings: :class: `last_meterings.LastMeterings`
+    :type last_meterings: :class:`station_meteo.last_meterings.LastMeterings`
     :param dbms_manager: The connection to the SGBD
-    :type dbms_manager: :class: `dbms_manager.DBMS_Manager`
+    :type dbms_manager: :class:`station_meteo.dbms_manager.DBMS_Manager`
     """
     logger = logging.getLogger(__name__)
 

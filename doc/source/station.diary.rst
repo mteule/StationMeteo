@@ -8,3 +8,9 @@ TODO: Move the db url lines from model to station.py , to use easily the autogen
 Sphinxey docstring example for a class:
 https://projects.gso.ac.upc.edu/projects/potra/wiki/Docstring_format_conventions#Documenting-classes-and-methods
 
+edition intersphinx:
+https://readthedocs.org/builds/instrumentkit/1168275/
+il suffit de voir comment il a organisé son conf.py pour sphinx:
+   https://github.com/Galvant/InstrumentKit/blob/dev/python/doc/source/conf.py
+   
+Attention, il faut refaire des "sudo python setup.py install" pour avoir à jour les bons fichiers pour l'autodoc, et "delete doc/build/", sinon on ne comprend pas pourquoi il ne se passe rien.
