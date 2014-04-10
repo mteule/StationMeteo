@@ -31,8 +31,20 @@ import dbms_manager
 
 class Station (object):
     """
-    Connect the Serial port to the string parser "LastMeterings()"
-    and the dbms manager "DBMS_Manager()"
+    Connect to each other:
+    
+    - the Serial port 
+    - the string parser "LastMeterings()"
+    - the dbms manager "DBMS_Manager()"
+    
+    Attributes:
+    
+    :param ser: The RS232 connection to the station's hardware.
+    :type ser: :class: `serial.Serial` instance
+    :param last_meterings: The string parser
+    :type last_meterings: :class: `last_meterings.LastMeterings`
+    :param dbms_manager: The connection to the SGBD
+    :type dbms_manager: :class: `dbms_manager.DBMS_Manager`
     """
     logger = logging.getLogger(__name__)
 
