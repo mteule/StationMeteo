@@ -29,11 +29,6 @@ Running the loop() with a continous input of raw string csv data:
 Then checking the resulted added values in the dbms. 
 
 
-* Note on this example: 
-
-This example will use the dbms connection at it's maximum speed. Indeed a new raw string will be parsed and inserted as soon as the last string had been totally inserted. Depending of the computers, we note that the quantity of raw strings treated every second can be quite low!
-
-
 .. code-block:: console
 
     $ mysql -u monty -p
@@ -43,6 +38,12 @@ This example will use the dbms connection at it's maximum speed. Indeed a new ra
     mysql> use test_dia;
     mysql> show tables;
     mysql> select * from Metering;
+
+
+
+* Note on this example: 
+
+This example will use the dbms connection at it's maximum speed. Indeed a new raw string will be parsed and inserted as soon as the last string had been totally inserted. Depending of the computers, we note that the quantity of raw strings treated every second can be quite low!
 
 
 
