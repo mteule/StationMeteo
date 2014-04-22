@@ -32,11 +32,11 @@ import dbms_manager
 class Station (object):
     """
     Connect to each other:
-    
-    - the Serial port 
+
+    - the Serial port
     - the string parser "LastMeterings()"
     - the dbms manager "DBMS_Manager()"
-    
+
     :param ser: The RS232 connection to the station's hardware.
     :type ser: :class:`serial.Serial` instance
     :param last_meterings: The string parser
@@ -66,6 +66,8 @@ class Station (object):
     def scan_for_new_data_string(self):
         """"""
         self.last_meterings.raw_string = self.ser.readline()
+        # TODO: Verify, but it seems that
+        # ser.readlines will block the program until it receives something
         if not self.last_meterings.raw_string:
             # must wait for a while
             delay = 1  # seconds
