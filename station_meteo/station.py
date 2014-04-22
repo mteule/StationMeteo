@@ -86,15 +86,16 @@ class Station (object):
                     # Surely raised if the Sensor table is incomplete
                     self.logger.error(err)
 
-    def _got_meterings_raw_data(self):
-        """"""
-        self.raw_received_meterings = self.ser.readline()
-        # does 'ser.readline()' really try to connect?
-        if not 0 == len(self.raw_received_meterings):
-            found_new_line = True
-        else:
-            found_new_line = False
-        return found_new_line
+    # Now probably useless:
+    #def _got_meterings_raw_data(self):
+        #""""""
+        #self.raw_received_meterings = self.ser.readline()
+        ## does 'ser.readline()' really try to connect?
+        #if not 0 == len(self.raw_received_meterings):
+            #found_new_line = True
+        #else:
+            #found_new_line = False
+        #return found_new_line
 
 if __name__ == "__main__":
         logging.basicConfig(level=logging.DEBUG)
