@@ -69,7 +69,8 @@ class Station (object):
         # TODO: Verify, but it seems that
         # ser.readlines will block the program until it receives something
         if not self.last_meterings.raw_string:
-            # must wait for a while
+            # Nothing received, must wait for a while
+            # (Here we need to check the ser.readline() behaviour)
             delay = 1  # seconds
             time.sleep(delay)
         else:
