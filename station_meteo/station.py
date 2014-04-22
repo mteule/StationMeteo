@@ -37,8 +37,6 @@ class Station (object):
     - the string parser "LastMeterings()"
     - the dbms manager "DBMS_Manager()"
     
-    Attributes:
-    
     :param ser: The RS232 connection to the station's hardware.
     :type ser: :class:`serial.Serial` instance
     :param last_meterings: The string parser
