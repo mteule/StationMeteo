@@ -4,7 +4,9 @@ from station_meteo.station import Station
 # TODO: change the sqlalchemy.Engine.bind imported from the model.py file
 
 class FakeSerial(object):
-
+    """
+    We may want to test the serial connection
+    """
     def __init__(self):
         pass
     pass
@@ -25,6 +27,8 @@ class MyTest(unittest.TestCase):  # TODO: Find a name!
         self.session = None
         del self.station  # TODO: know if a close() function is necessary
         pass
+        
+    # TODO: Test something
 
 
 

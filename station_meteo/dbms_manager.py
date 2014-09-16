@@ -14,7 +14,12 @@ This dbms_manager module will be used to interact with databases.
 It is separated from, but uses, the sqlalchemy declarative model,
  imported as model.py.
 
-It initializes the globals values of the declarative model
+It initializes the globals values of this declarative model. 
+This way we can use a RAW 'sqlacodegen' generated model.py as model.
+It differs of the traditionnal pyramid sqlalchemy model only because of this 
+detail, the lack of the 'sqlalchemy.create_engine(db_url)' part that has been
+moved here.
+
 
 """
 
@@ -67,12 +72,12 @@ class DBMS_Manager (object):
         to insert the values of a metering.
         The metering values are passed as a simple dict().
 
-        For example:
+        For example of a metering dict:
 
             {'date': datetime.datetime(2014, 2, 27, 5, 59, 28, 262085),
             'raw': '-1', 'sensor_id': 2, 'name': 'HUM', 'value': '57.50'}
 
-        The only keys that will be inserted will be:
+        The only keys that will be inserted from it will be:
 
             meterings['value'],
             meterings['date'],
